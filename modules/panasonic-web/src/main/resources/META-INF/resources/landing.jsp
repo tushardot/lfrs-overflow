@@ -1,5 +1,6 @@
 <%@ include file="/init.jsp" %>
 <%@ page import="queries.service.model.question" %>
+<%@ page import="queries.service.model.answer" %>
 <%@ page import="panasonic.web.portlet.PanasonicWebPortlet" %>
 <%@ page import="java.util.*" %>
 
@@ -286,7 +287,7 @@ body {
     border: 1px solid #eee;
     border-radius: 5px;
     background-color: #f9f9f9;
-    display: none;
+ 
 }
 
 
@@ -299,7 +300,17 @@ body {
  .aui-hide{
  display: none;
  }
-  	
+   
+    .post-by {
+    		width: 150px;
+    		
+    		margin-left: 550px;
+            background-color: #e0e0e0;
+            padding: 2px 5px;
+            font-size: 12px;
+            border-radius: 3px;
+        }
+    
   	
     </style>
     
@@ -314,7 +325,7 @@ body {
         <ul class="menu">
 			<li><img src="https://media.trustradius.com/product-logos/k2/oa/612TV5WCJ19M.PNG" width="50px"></li>
             <li class="logo"><a href="#"><b>LiferayOverflow</b></a></li>
-            <li class="item"><img src=""><a href="#">Home</a></li>
+            <li class="item"><img src=""><a href="<portlet:renderURL><portlet:param name="mvcPath" value="/landing.jsp"/></portlet:renderURL>">Home</a></li>
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
 			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
@@ -326,7 +337,7 @@ body {
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     </nav>
-    
+     
      <div class="container">
         <h1>Questions and Answers</h1>
         <div class="questions">
@@ -339,7 +350,10 @@ body {
     	String desc = ques.getQuesDesc();
         String username = ques.getUserName();	
         id = ques.getQuesId();
+        List<answer> ans = PanasonicWebPortlet.getansbyqid(id);
+        System.out.println(ans);
     %>
+
            <aui:form method="post" action="${queryActionURL}"> 
             <div class="question-card">
              <div class="user-info">
@@ -350,17 +364,35 @@ body {
                     <h2><%= title %> </h2>
                     <p> <%=desc %>  </p>
                 </div>
+                <% if(ans.isEmpty()){
+                	System.out.println("not found");
+                	%>
+                
                 <div class="answer">
-                    <p>Answer 1 goes here...</p>
+                    <p>No replies yet.....</p>
                 </div>
+                <% } 
+                else{
+                	for(answer ans1 : ans){
+                		%>
+                		<div class="answer">
+                        <p><%=ans1.getAnsDesc() %></p>
+                        <div class="post-by">Posted by:<%=ans1.getUserName() %></div>
+                    </div>
+                    
+                    <% 
+                	}
+                }
+                %>
                 <aui:input cssClass="aui-hide" type="text"  name= "questionid" value= "<%=id %>" label=""/>
                 
-                <button class="btn-toggle">Toggle Answer</button>
+               
           <aui:button type="submit" value="Post Answer" class="item button"></aui:button>
             </div>
             </aui:form>
             <!-- Add more question cards here as needed -->
             
+        
      
     <% } %>
        </div>

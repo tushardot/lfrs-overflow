@@ -278,51 +278,161 @@ public class answerUtil {
 	}
 
 	/**
-	 * Returns the answer where userName = &#63; or throws a <code>NoSuchanswerException</code> if it could not be found.
+	 * Returns all the answers where userName = &#63;.
 	 *
 	 * @param userName the user name
-	 * @return the matching answer
-	 * @throws NoSuchanswerException if a matching answer could not be found
+	 * @return the matching answers
 	 */
-	public static answer findByuserName(String userName)
-		throws queries.service.exception.NoSuchanswerException {
-
+	public static List<answer> findByuserName(String userName) {
 		return getPersistence().findByuserName(userName);
 	}
 
 	/**
-	 * Returns the answer where userName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns a range of all the answers where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>answerModelImpl</code>.
+	 * </p>
 	 *
 	 * @param userName the user name
-	 * @return the matching answer, or <code>null</code> if a matching answer could not be found
+	 * @param start the lower bound of the range of answers
+	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @return the range of matching answers
 	 */
-	public static answer fetchByuserName(String userName) {
-		return getPersistence().fetchByuserName(userName);
+	public static List<answer> findByuserName(
+		String userName, int start, int end) {
+
+		return getPersistence().findByuserName(userName, start, end);
 	}
 
 	/**
-	 * Returns the answer where userName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns an ordered range of all the answers where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>answerModelImpl</code>.
+	 * </p>
 	 *
 	 * @param userName the user name
+	 * @param start the lower bound of the range of answers
+	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching answers
+	 */
+	public static List<answer> findByuserName(
+		String userName, int start, int end,
+		OrderByComparator<answer> orderByComparator) {
+
+		return getPersistence().findByuserName(
+			userName, start, end, orderByComparator);
+	}
+
+	/**
+	 * Returns an ordered range of all the answers where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>answerModelImpl</code>.
+	 * </p>
+	 *
+	 * @param userName the user name
+	 * @param start the lower bound of the range of answers
+	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching answer, or <code>null</code> if a matching answer could not be found
+	 * @return the ordered range of matching answers
 	 */
-	public static answer fetchByuserName(
-		String userName, boolean useFinderCache) {
+	public static List<answer> findByuserName(
+		String userName, int start, int end,
+		OrderByComparator<answer> orderByComparator, boolean useFinderCache) {
 
-		return getPersistence().fetchByuserName(userName, useFinderCache);
+		return getPersistence().findByuserName(
+			userName, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
-	 * Removes the answer where userName = &#63; from the database.
+	 * Returns the first answer in the ordered set where userName = &#63;.
 	 *
 	 * @param userName the user name
-	 * @return the answer that was removed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching answer
+	 * @throws NoSuchanswerException if a matching answer could not be found
 	 */
-	public static answer removeByuserName(String userName)
+	public static answer findByuserName_First(
+			String userName, OrderByComparator<answer> orderByComparator)
 		throws queries.service.exception.NoSuchanswerException {
 
-		return getPersistence().removeByuserName(userName);
+		return getPersistence().findByuserName_First(
+			userName, orderByComparator);
+	}
+
+	/**
+	 * Returns the first answer in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching answer, or <code>null</code> if a matching answer could not be found
+	 */
+	public static answer fetchByuserName_First(
+		String userName, OrderByComparator<answer> orderByComparator) {
+
+		return getPersistence().fetchByuserName_First(
+			userName, orderByComparator);
+	}
+
+	/**
+	 * Returns the last answer in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching answer
+	 * @throws NoSuchanswerException if a matching answer could not be found
+	 */
+	public static answer findByuserName_Last(
+			String userName, OrderByComparator<answer> orderByComparator)
+		throws queries.service.exception.NoSuchanswerException {
+
+		return getPersistence().findByuserName_Last(
+			userName, orderByComparator);
+	}
+
+	/**
+	 * Returns the last answer in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching answer, or <code>null</code> if a matching answer could not be found
+	 */
+	public static answer fetchByuserName_Last(
+		String userName, OrderByComparator<answer> orderByComparator) {
+
+		return getPersistence().fetchByuserName_Last(
+			userName, orderByComparator);
+	}
+
+	/**
+	 * Returns the answers before and after the current answer in the ordered set where userName = &#63;.
+	 *
+	 * @param ansId the primary key of the current answer
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next answer
+	 * @throws NoSuchanswerException if a answer with the primary key could not be found
+	 */
+	public static answer[] findByuserName_PrevAndNext(
+			long ansId, String userName,
+			OrderByComparator<answer> orderByComparator)
+		throws queries.service.exception.NoSuchanswerException {
+
+		return getPersistence().findByuserName_PrevAndNext(
+			ansId, userName, orderByComparator);
+	}
+
+	/**
+	 * Removes all the answers where userName = &#63; from the database.
+	 *
+	 * @param userName the user name
+	 */
+	public static void removeByuserName(String userName) {
+		getPersistence().removeByuserName(userName);
 	}
 
 	/**
@@ -336,49 +446,155 @@ public class answerUtil {
 	}
 
 	/**
-	 * Returns the answer where quesId = &#63; or throws a <code>NoSuchanswerException</code> if it could not be found.
+	 * Returns all the answers where quesId = &#63;.
 	 *
 	 * @param quesId the ques ID
-	 * @return the matching answer
-	 * @throws NoSuchanswerException if a matching answer could not be found
+	 * @return the matching answers
 	 */
-	public static answer findByquesId(long quesId)
-		throws queries.service.exception.NoSuchanswerException {
-
+	public static List<answer> findByquesId(long quesId) {
 		return getPersistence().findByquesId(quesId);
 	}
 
 	/**
-	 * Returns the answer where quesId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns a range of all the answers where quesId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>answerModelImpl</code>.
+	 * </p>
 	 *
 	 * @param quesId the ques ID
-	 * @return the matching answer, or <code>null</code> if a matching answer could not be found
+	 * @param start the lower bound of the range of answers
+	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @return the range of matching answers
 	 */
-	public static answer fetchByquesId(long quesId) {
-		return getPersistence().fetchByquesId(quesId);
+	public static List<answer> findByquesId(long quesId, int start, int end) {
+		return getPersistence().findByquesId(quesId, start, end);
 	}
 
 	/**
-	 * Returns the answer where quesId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns an ordered range of all the answers where quesId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>answerModelImpl</code>.
+	 * </p>
 	 *
 	 * @param quesId the ques ID
+	 * @param start the lower bound of the range of answers
+	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching answers
+	 */
+	public static List<answer> findByquesId(
+		long quesId, int start, int end,
+		OrderByComparator<answer> orderByComparator) {
+
+		return getPersistence().findByquesId(
+			quesId, start, end, orderByComparator);
+	}
+
+	/**
+	 * Returns an ordered range of all the answers where quesId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>answerModelImpl</code>.
+	 * </p>
+	 *
+	 * @param quesId the ques ID
+	 * @param start the lower bound of the range of answers
+	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching answer, or <code>null</code> if a matching answer could not be found
+	 * @return the ordered range of matching answers
 	 */
-	public static answer fetchByquesId(long quesId, boolean useFinderCache) {
-		return getPersistence().fetchByquesId(quesId, useFinderCache);
+	public static List<answer> findByquesId(
+		long quesId, int start, int end,
+		OrderByComparator<answer> orderByComparator, boolean useFinderCache) {
+
+		return getPersistence().findByquesId(
+			quesId, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
-	 * Removes the answer where quesId = &#63; from the database.
+	 * Returns the first answer in the ordered set where quesId = &#63;.
 	 *
 	 * @param quesId the ques ID
-	 * @return the answer that was removed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching answer
+	 * @throws NoSuchanswerException if a matching answer could not be found
 	 */
-	public static answer removeByquesId(long quesId)
+	public static answer findByquesId_First(
+			long quesId, OrderByComparator<answer> orderByComparator)
 		throws queries.service.exception.NoSuchanswerException {
 
-		return getPersistence().removeByquesId(quesId);
+		return getPersistence().findByquesId_First(quesId, orderByComparator);
+	}
+
+	/**
+	 * Returns the first answer in the ordered set where quesId = &#63;.
+	 *
+	 * @param quesId the ques ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching answer, or <code>null</code> if a matching answer could not be found
+	 */
+	public static answer fetchByquesId_First(
+		long quesId, OrderByComparator<answer> orderByComparator) {
+
+		return getPersistence().fetchByquesId_First(quesId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last answer in the ordered set where quesId = &#63;.
+	 *
+	 * @param quesId the ques ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching answer
+	 * @throws NoSuchanswerException if a matching answer could not be found
+	 */
+	public static answer findByquesId_Last(
+			long quesId, OrderByComparator<answer> orderByComparator)
+		throws queries.service.exception.NoSuchanswerException {
+
+		return getPersistence().findByquesId_Last(quesId, orderByComparator);
+	}
+
+	/**
+	 * Returns the last answer in the ordered set where quesId = &#63;.
+	 *
+	 * @param quesId the ques ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching answer, or <code>null</code> if a matching answer could not be found
+	 */
+	public static answer fetchByquesId_Last(
+		long quesId, OrderByComparator<answer> orderByComparator) {
+
+		return getPersistence().fetchByquesId_Last(quesId, orderByComparator);
+	}
+
+	/**
+	 * Returns the answers before and after the current answer in the ordered set where quesId = &#63;.
+	 *
+	 * @param ansId the primary key of the current answer
+	 * @param quesId the ques ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next answer
+	 * @throws NoSuchanswerException if a answer with the primary key could not be found
+	 */
+	public static answer[] findByquesId_PrevAndNext(
+			long ansId, long quesId,
+			OrderByComparator<answer> orderByComparator)
+		throws queries.service.exception.NoSuchanswerException {
+
+		return getPersistence().findByquesId_PrevAndNext(
+			ansId, quesId, orderByComparator);
+	}
+
+	/**
+	 * Removes all the answers where quesId = &#63; from the database.
+	 *
+	 * @param quesId the ques ID
+	 */
+	public static void removeByquesId(long quesId) {
+		getPersistence().removeByquesId(quesId);
 	}
 
 	/**

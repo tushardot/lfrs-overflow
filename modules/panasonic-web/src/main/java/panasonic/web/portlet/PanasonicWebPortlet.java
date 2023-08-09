@@ -4,7 +4,9 @@ import panasonic.service.model.channel;
 import panasonic.service.service.channelLocalServiceUtil;
 import panasonic.service.service.persistence.channelPersistence;
 import panasonic.web.constants.PanasonicWebPortletKeys;
+import queries.service.model.answer;
 import queries.service.model.question;
+import queries.service.service.answerLocalServiceUtil;
 import queries.service.service.questionLocalServiceUtil;
 
 import com.liferay.mail.kernel.model.MailMessage;
@@ -46,8 +48,8 @@ public class PanasonicWebPortlet extends MVCPortlet {
 	
 	
 	
-	String localuser = "";
-	long quesId;
+	static String localuser = "";
+	static long quesId;
 	//Add user method
 	public void addinfo(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception
 	{
@@ -329,12 +331,14 @@ public class PanasonicWebPortlet extends MVCPortlet {
 		System.out.println("Username" + localuser);
 		int countques = questionLocalServiceUtil.getquestionsCount();
 		System.out.println("count" + countques);
-		 question newques = questionLocalServiceUtil.createquestion(countques + 1);
+		long idkey= System.currentTimeMillis();
+		 question newques = questionLocalServiceUtil.createquestion(idkey);
 		 
 		 newques.setQuesTitle(questitle);
 		 newques.setQuesDesc(quesdesc);
 		 newques.setUserName(localuser);
 		 questionLocalServiceUtil.addquestion(newques);
+		 actionResponse.setRenderParameter("mvcPath", "/META-INF/resources/landing.jsp");
 		
    
 	}
@@ -350,15 +354,44 @@ public class PanasonicWebPortlet extends MVCPortlet {
 	public  void queryinfo(ActionRequest actionRequest, ActionResponse actionResponse){
         quesId = Long.valueOf(ParamUtil.getString(actionRequest,"questionid"));
 		System.out.println(ParamUtil.getString(actionRequest,"questionid"));
+		System.out.println("quesId-----------------------------------");
 		System.out.println(quesId);
 		actionResponse.setRenderParameter("mvcPath", "/META-INF/resources/query.jsp");
 	}
 
 	
-	 //get Quesion Id 
-	public long getquesid() {
-		return quesId;
+	
+	//add answer 
+	public void addanswerinfo(ActionRequest actionRequest, ActionResponse actionResponse) {
+		quesId = Long.valueOf(ParamUtil.getString(actionRequest,"questionid"));
+		String ansdesc = ParamUtil.getString(actionRequest,"answer");
+//		int anscount = answerLocalServiceUtil.getanswersCount();
+		long idkey= System.currentTimeMillis();
+		answer newans = answerLocalServiceUtil.createanswer(idkey);
+		newans.setUserName(localuser);
+		newans.setAnsDesc(ansdesc);
+		newans.setQuesId(quesId);
+		answerLocalServiceUtil.addanswer(newans);
+		System.out.println(ansdesc);
+		System.out.println("Answer add successfully");
+		actionResponse.setRenderParameter("mvcPath", "/META-INF/resources/landing.jsp");
 	}
+	
+	
+	 //get Quesion Id 
+	public static long getquesId() {
+		return quesId;
+		
+	}
+	//get answer by questionId	
+	public static List<answer> getansbyqid(long id){
+		return answerLocalServiceUtil.getansbyquesid(id);
+	}
+	//get Usename
+	public static String getuser() {
+		return localuser;
+	}
+	
 	
 	//method for generate otp
 	   public static String generateOTP(int length) {
