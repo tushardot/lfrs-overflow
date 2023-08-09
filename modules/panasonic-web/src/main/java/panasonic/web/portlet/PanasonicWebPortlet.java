@@ -337,6 +337,7 @@ public class PanasonicWebPortlet extends MVCPortlet {
 		 newques.setQuesDesc(quesdesc);
 		 newques.setUserName(localuser);
 		 questionLocalServiceUtil.addquestion(newques);
+		 actionResponse.setRenderParameter("mvcPath", "/META-INF/resources/landing.jsp");
 		
    
 	}

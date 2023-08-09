@@ -6,7 +6,18 @@
 <portlet:renderURL var="renderforgot">
 <portlet:param name="mvcPath" value="/forgotpass.jsp"/>
 </portlet:renderURL>
+
+<portlet:renderURL var="loginpage">
+<portlet:param name="mvcPath" value="/login.jsp"/>
+</portlet:renderURL>
+
+<portlet:renderURL var="createuserpage">
+<portlet:param name="mvcPath" value="/createuser.jsp"/>
+</portlet:renderURL>
+
 <portlet:actionURL name="loginfo" var="loginfoActionURL"></portlet:actionURL>
+
+
 
 
 <html lang="en">
@@ -22,12 +33,15 @@
 
 <!-- Main css -->
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/META-INF/resources/css/style.css">
-
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
 <style>
     	*{
     		box-sizing: border-box;
     		padding: 0;
     		margin: 0;
+  		}
+  		.container {
+  		margin: 200px auto;
   		}
   		
   		.toggle{
@@ -225,10 +239,24 @@
         	padding-right: 0;
     	}
   	}
+  	
 </style>
 </head>
 <body>
-
+       <nav class="nav">
+        <ul class="menu">
+			<li><img src="https://media.trustradius.com/product-logos/k2/oa/612TV5WCJ19M.PNG" width="50px"></li>
+            <li class="logo"><a href="#"><b>LiferayOverflow</b></a></li>
+            <li class="item"><img src=""><a href="<portlet:renderURL><portlet:param name="mvcPath" value="/home.jsp"/></portlet:renderURL>">Home</a></li>
+            <li class="item"><a href="#">About</a></li>
+            <li class="item"><a href="#">Services</a></li>
+			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
+<%--             <li class="item button"><aui:button type="submit" value="Ask Ques" class="item button" onClick="<%=quespage.toString()%>"></aui:button><li> --%>
+<%--             <li class="item button"><aui:button type="submit" value="Log In" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li> --%>
+            <li class="item button"><aui:button type="submit" value="Sign Up" class="item button" onClick="<%=createuserpage.toString()%>"></aui:button></li>
+            <li class="toggle"><span class="bars"></span></li>
+        </ul>
+    </nav>
 	<div class="main">
 
 		<!-- Sing in  Form -->

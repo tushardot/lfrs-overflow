@@ -315,7 +315,7 @@ body {
         <ul class="menu">
 			<li><img src="https://media.trustradius.com/product-logos/k2/oa/612TV5WCJ19M.PNG" width="50px"></li>
             <li class="logo"><a href="#"><b>LiferayOverflow</b></a></li>
-            <li class="item"><img src=""><a href="#">Home</a></li>
+            <li class="item"><img src=""><a href="<portlet:renderURL><portlet:param name="mvcPath" value="/landing.jsp"/></portlet:renderURL>">Home</a></li>
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
 			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
