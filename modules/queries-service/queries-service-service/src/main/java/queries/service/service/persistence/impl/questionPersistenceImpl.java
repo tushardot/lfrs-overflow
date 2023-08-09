@@ -630,87 +630,124 @@ public class questionPersistenceImpl
 	private static final String _FINDER_COLUMN_UUID_UUID_3 =
 		"(question.uuid IS NULL OR question.uuid = '')";
 
-	private FinderPath _finderPathFetchByuserName;
+	private FinderPath _finderPathWithPaginationFindByuserName;
+	private FinderPath _finderPathWithoutPaginationFindByuserName;
 	private FinderPath _finderPathCountByuserName;
 
 	/**
-	 * Returns the question where userName = &#63; or throws a <code>NoSuchquestionException</code> if it could not be found.
+	 * Returns all the questions where userName = &#63;.
 	 *
 	 * @param userName the user name
-	 * @return the matching question
-	 * @throws NoSuchquestionException if a matching question could not be found
+	 * @return the matching questions
 	 */
 	@Override
-	public question findByuserName(String userName)
-		throws NoSuchquestionException {
-
-		question question = fetchByuserName(userName);
-
-		if (question == null) {
-			StringBundler sb = new StringBundler(4);
-
-			sb.append(_NO_SUCH_ENTITY_WITH_KEY);
-
-			sb.append("userName=");
-			sb.append(userName);
-
-			sb.append("}");
-
-			if (_log.isDebugEnabled()) {
-				_log.debug(sb.toString());
-			}
-
-			throw new NoSuchquestionException(sb.toString());
-		}
-
-		return question;
+	public List<question> findByuserName(String userName) {
+		return findByuserName(
+			userName, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null);
 	}
 
 	/**
-	 * Returns the question where userName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns a range of all the questions where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>questionModelImpl</code>.
+	 * </p>
 	 *
 	 * @param userName the user name
-	 * @return the matching question, or <code>null</code> if a matching question could not be found
+	 * @param start the lower bound of the range of questions
+	 * @param end the upper bound of the range of questions (not inclusive)
+	 * @return the range of matching questions
 	 */
 	@Override
-	public question fetchByuserName(String userName) {
-		return fetchByuserName(userName, true);
+	public List<question> findByuserName(String userName, int start, int end) {
+		return findByuserName(userName, start, end, null);
 	}
 
 	/**
-	 * Returns the question where userName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns an ordered range of all the questions where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>questionModelImpl</code>.
+	 * </p>
 	 *
 	 * @param userName the user name
+	 * @param start the lower bound of the range of questions
+	 * @param end the upper bound of the range of questions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching questions
+	 */
+	@Override
+	public List<question> findByuserName(
+		String userName, int start, int end,
+		OrderByComparator<question> orderByComparator) {
+
+		return findByuserName(userName, start, end, orderByComparator, true);
+	}
+
+	/**
+	 * Returns an ordered range of all the questions where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>questionModelImpl</code>.
+	 * </p>
+	 *
+	 * @param userName the user name
+	 * @param start the lower bound of the range of questions
+	 * @param end the upper bound of the range of questions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching question, or <code>null</code> if a matching question could not be found
+	 * @return the ordered range of matching questions
 	 */
 	@Override
-	public question fetchByuserName(String userName, boolean useFinderCache) {
+	public List<question> findByuserName(
+		String userName, int start, int end,
+		OrderByComparator<question> orderByComparator, boolean useFinderCache) {
+
 		userName = Objects.toString(userName, "");
 
+		FinderPath finderPath = null;
 		Object[] finderArgs = null;
 
-		if (useFinderCache) {
-			finderArgs = new Object[] {userName};
+		if ((start == QueryUtil.ALL_POS) && (end == QueryUtil.ALL_POS) &&
+			(orderByComparator == null)) {
+
+			if (useFinderCache) {
+				finderPath = _finderPathWithoutPaginationFindByuserName;
+				finderArgs = new Object[] {userName};
+			}
+		}
+		else if (useFinderCache) {
+			finderPath = _finderPathWithPaginationFindByuserName;
+			finderArgs = new Object[] {userName, start, end, orderByComparator};
 		}
 
-		Object result = null;
+		List<question> list = null;
 
 		if (useFinderCache) {
-			result = finderCache.getResult(
-				_finderPathFetchByuserName, finderArgs, this);
-		}
+			list = (List<question>)finderCache.getResult(
+				finderPath, finderArgs, this);
 
-		if (result instanceof question) {
-			question question = (question)result;
+			if ((list != null) && !list.isEmpty()) {
+				for (question question : list) {
+					if (!userName.equals(question.getUserName())) {
+						list = null;
 
-			if (!Objects.equals(userName, question.getUserName())) {
-				result = null;
+						break;
+					}
+				}
 			}
 		}
 
-		if (result == null) {
-			StringBundler sb = new StringBundler(3);
+		if (list == null) {
+			StringBundler sb = null;
+
+			if (orderByComparator != null) {
+				sb = new StringBundler(
+					3 + (orderByComparator.getOrderByFields().length * 2));
+			}
+			else {
+				sb = new StringBundler(3);
+			}
 
 			sb.append(_SQL_SELECT_QUESTION_WHERE);
 
@@ -723,6 +760,14 @@ public class questionPersistenceImpl
 				bindUserName = true;
 
 				sb.append(_FINDER_COLUMN_USERNAME_USERNAME_2);
+			}
+
+			if (orderByComparator != null) {
+				appendOrderByComparator(
+					sb, _ORDER_BY_ENTITY_ALIAS, orderByComparator);
+			}
+			else {
+				sb.append(questionModelImpl.ORDER_BY_JPQL);
 			}
 
 			String sql = sb.toString();
@@ -740,35 +785,13 @@ public class questionPersistenceImpl
 					queryPos.add(userName);
 				}
 
-				List<question> list = query.list();
+				list = (List<question>)QueryUtil.list(
+					query, getDialect(), start, end);
 
-				if (list.isEmpty()) {
-					if (useFinderCache) {
-						finderCache.putResult(
-							_finderPathFetchByuserName, finderArgs, list);
-					}
-				}
-				else {
-					if (list.size() > 1) {
-						Collections.sort(list, Collections.reverseOrder());
+				cacheResult(list);
 
-						if (_log.isWarnEnabled()) {
-							if (!useFinderCache) {
-								finderArgs = new Object[] {userName};
-							}
-
-							_log.warn(
-								"questionPersistenceImpl.fetchByuserName(String, boolean) with parameters (" +
-									StringUtil.merge(finderArgs) +
-										") yields a result set with more than 1 result. This violates the logical unique restriction. There is no order guarantee on which result is returned by this finder.");
-						}
-					}
-
-					question question = list.get(0);
-
-					result = question;
-
-					cacheResult(question);
+				if (useFinderCache) {
+					finderCache.putResult(finderPath, finderArgs, list);
 				}
 			}
 			catch (Exception exception) {
@@ -779,27 +802,294 @@ public class questionPersistenceImpl
 			}
 		}
 
-		if (result instanceof List<?>) {
+		return list;
+	}
+
+	/**
+	 * Returns the first question in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching question
+	 * @throws NoSuchquestionException if a matching question could not be found
+	 */
+	@Override
+	public question findByuserName_First(
+			String userName, OrderByComparator<question> orderByComparator)
+		throws NoSuchquestionException {
+
+		question question = fetchByuserName_First(userName, orderByComparator);
+
+		if (question != null) {
+			return question;
+		}
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		sb.append("userName=");
+		sb.append(userName);
+
+		sb.append("}");
+
+		throw new NoSuchquestionException(sb.toString());
+	}
+
+	/**
+	 * Returns the first question in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching question, or <code>null</code> if a matching question could not be found
+	 */
+	@Override
+	public question fetchByuserName_First(
+		String userName, OrderByComparator<question> orderByComparator) {
+
+		List<question> list = findByuserName(userName, 0, 1, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the last question in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching question
+	 * @throws NoSuchquestionException if a matching question could not be found
+	 */
+	@Override
+	public question findByuserName_Last(
+			String userName, OrderByComparator<question> orderByComparator)
+		throws NoSuchquestionException {
+
+		question question = fetchByuserName_Last(userName, orderByComparator);
+
+		if (question != null) {
+			return question;
+		}
+
+		StringBundler sb = new StringBundler(4);
+
+		sb.append(_NO_SUCH_ENTITY_WITH_KEY);
+
+		sb.append("userName=");
+		sb.append(userName);
+
+		sb.append("}");
+
+		throw new NoSuchquestionException(sb.toString());
+	}
+
+	/**
+	 * Returns the last question in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching question, or <code>null</code> if a matching question could not be found
+	 */
+	@Override
+	public question fetchByuserName_Last(
+		String userName, OrderByComparator<question> orderByComparator) {
+
+		int count = countByuserName(userName);
+
+		if (count == 0) {
 			return null;
 		}
+
+		List<question> list = findByuserName(
+			userName, count - 1, count, orderByComparator);
+
+		if (!list.isEmpty()) {
+			return list.get(0);
+		}
+
+		return null;
+	}
+
+	/**
+	 * Returns the questions before and after the current question in the ordered set where userName = &#63;.
+	 *
+	 * @param quesId the primary key of the current question
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next question
+	 * @throws NoSuchquestionException if a question with the primary key could not be found
+	 */
+	@Override
+	public question[] findByuserName_PrevAndNext(
+			long quesId, String userName,
+			OrderByComparator<question> orderByComparator)
+		throws NoSuchquestionException {
+
+		userName = Objects.toString(userName, "");
+
+		question question = findByPrimaryKey(quesId);
+
+		Session session = null;
+
+		try {
+			session = openSession();
+
+			question[] array = new questionImpl[3];
+
+			array[0] = getByuserName_PrevAndNext(
+				session, question, userName, orderByComparator, true);
+
+			array[1] = question;
+
+			array[2] = getByuserName_PrevAndNext(
+				session, question, userName, orderByComparator, false);
+
+			return array;
+		}
+		catch (Exception exception) {
+			throw processException(exception);
+		}
+		finally {
+			closeSession(session);
+		}
+	}
+
+	protected question getByuserName_PrevAndNext(
+		Session session, question question, String userName,
+		OrderByComparator<question> orderByComparator, boolean previous) {
+
+		StringBundler sb = null;
+
+		if (orderByComparator != null) {
+			sb = new StringBundler(
+				4 + (orderByComparator.getOrderByConditionFields().length * 3) +
+					(orderByComparator.getOrderByFields().length * 3));
+		}
 		else {
-			return (question)result;
+			sb = new StringBundler(3);
+		}
+
+		sb.append(_SQL_SELECT_QUESTION_WHERE);
+
+		boolean bindUserName = false;
+
+		if (userName.isEmpty()) {
+			sb.append(_FINDER_COLUMN_USERNAME_USERNAME_3);
+		}
+		else {
+			bindUserName = true;
+
+			sb.append(_FINDER_COLUMN_USERNAME_USERNAME_2);
+		}
+
+		if (orderByComparator != null) {
+			String[] orderByConditionFields =
+				orderByComparator.getOrderByConditionFields();
+
+			if (orderByConditionFields.length > 0) {
+				sb.append(WHERE_AND);
+			}
+
+			for (int i = 0; i < orderByConditionFields.length; i++) {
+				sb.append(_ORDER_BY_ENTITY_ALIAS);
+				sb.append(orderByConditionFields[i]);
+
+				if ((i + 1) < orderByConditionFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						sb.append(WHERE_GREATER_THAN_HAS_NEXT);
+					}
+					else {
+						sb.append(WHERE_LESSER_THAN_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						sb.append(WHERE_GREATER_THAN);
+					}
+					else {
+						sb.append(WHERE_LESSER_THAN);
+					}
+				}
+			}
+
+			sb.append(ORDER_BY_CLAUSE);
+
+			String[] orderByFields = orderByComparator.getOrderByFields();
+
+			for (int i = 0; i < orderByFields.length; i++) {
+				sb.append(_ORDER_BY_ENTITY_ALIAS);
+				sb.append(orderByFields[i]);
+
+				if ((i + 1) < orderByFields.length) {
+					if (orderByComparator.isAscending() ^ previous) {
+						sb.append(ORDER_BY_ASC_HAS_NEXT);
+					}
+					else {
+						sb.append(ORDER_BY_DESC_HAS_NEXT);
+					}
+				}
+				else {
+					if (orderByComparator.isAscending() ^ previous) {
+						sb.append(ORDER_BY_ASC);
+					}
+					else {
+						sb.append(ORDER_BY_DESC);
+					}
+				}
+			}
+		}
+		else {
+			sb.append(questionModelImpl.ORDER_BY_JPQL);
+		}
+
+		String sql = sb.toString();
+
+		Query query = session.createQuery(sql);
+
+		query.setFirstResult(0);
+		query.setMaxResults(2);
+
+		QueryPos queryPos = QueryPos.getInstance(query);
+
+		if (bindUserName) {
+			queryPos.add(userName);
+		}
+
+		if (orderByComparator != null) {
+			for (Object orderByConditionValue :
+					orderByComparator.getOrderByConditionValues(question)) {
+
+				queryPos.add(orderByConditionValue);
+			}
+		}
+
+		List<question> list = query.list();
+
+		if (list.size() == 2) {
+			return list.get(1);
+		}
+		else {
+			return null;
 		}
 	}
 
 	/**
-	 * Removes the question where userName = &#63; from the database.
+	 * Removes all the questions where userName = &#63; from the database.
 	 *
 	 * @param userName the user name
-	 * @return the question that was removed
 	 */
 	@Override
-	public question removeByuserName(String userName)
-		throws NoSuchquestionException {
+	public void removeByuserName(String userName) {
+		for (question question :
+				findByuserName(
+					userName, QueryUtil.ALL_POS, QueryUtil.ALL_POS, null)) {
 
-		question question = findByuserName(userName);
-
-		return remove(question);
+			remove(question);
+		}
 	}
 
 	/**
@@ -1101,10 +1391,6 @@ public class questionPersistenceImpl
 			questionImpl.class, question.getPrimaryKey(), question);
 
 		finderCache.putResult(
-			_finderPathFetchByuserName, new Object[] {question.getUserName()},
-			question);
-
-		finderCache.putResult(
 			_finderPathFetchByquesId, new Object[] {question.getQuesId()},
 			question);
 	}
@@ -1183,14 +1469,7 @@ public class questionPersistenceImpl
 	protected void cacheUniqueFindersCache(
 		questionModelImpl questionModelImpl) {
 
-		Object[] args = new Object[] {questionModelImpl.getUserName()};
-
-		finderCache.putResult(
-			_finderPathCountByuserName, args, Long.valueOf(1), false);
-		finderCache.putResult(
-			_finderPathFetchByuserName, args, questionModelImpl, false);
-
-		args = new Object[] {questionModelImpl.getQuesId()};
+		Object[] args = new Object[] {questionModelImpl.getQuesId()};
 
 		finderCache.putResult(
 			_finderPathCountByquesId, args, Long.valueOf(1), false);
@@ -1661,8 +1940,16 @@ public class questionPersistenceImpl
 			new String[] {String.class.getName()}, new String[] {"uuid_"},
 			false);
 
-		_finderPathFetchByuserName = _createFinderPath(
-			FINDER_CLASS_NAME_ENTITY, "fetchByuserName",
+		_finderPathWithPaginationFindByuserName = _createFinderPath(
+			FINDER_CLASS_NAME_LIST_WITH_PAGINATION, "findByuserName",
+			new String[] {
+				String.class.getName(), Integer.class.getName(),
+				Integer.class.getName(), OrderByComparator.class.getName()
+			},
+			new String[] {"userName"}, true);
+
+		_finderPathWithoutPaginationFindByuserName = _createFinderPath(
+			FINDER_CLASS_NAME_LIST_WITHOUT_PAGINATION, "findByuserName",
 			new String[] {String.class.getName()}, new String[] {"userName"},
 			true);
 

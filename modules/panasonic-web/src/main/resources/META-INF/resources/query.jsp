@@ -2,7 +2,7 @@
 <%@ page import="queries.service.model.question" %>
 <%@ page import="panasonic.web.portlet.PanasonicWebPortlet" %>
 <%@ page import="java.util.*" %>
-
+<%@ page import="queries.service.service.questionLocalServiceUtil;" %>
 
 <portlet:renderURL var="querypage">
 <portlet:param name="mvcPath" value="/query.jsp"/>
@@ -17,6 +17,11 @@
 <portlet:renderURL var="quespage">
 <portlet:param name="mvcPath" value="/addques.jsp"/>
 </portlet:renderURL>
+
+
+
+<portlet:actionURL name="addanswerinfo" var="addanswerActionURL"></portlet:actionURL>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -269,7 +274,9 @@
             background-color: #0056b3;
         }
 
-  	
+  	  .aui-hide{
+  	  display: none;
+  	  }
   	
     </style>
     
@@ -284,7 +291,7 @@
         <ul class="menu">
 			<li><img src="https://media.trustradius.com/product-logos/k2/oa/612TV5WCJ19M.PNG" width="50px"></li>
             <li class="logo"><a href="#"><b>LiferayOverflow</b></a></li>
-            <li class="item"><img src=""><a href="#">Home</a></li>
+            <li class="item"><img src=""><a href="<portlet:renderURL><portlet:param name="mvcPath" value="/landing.jsp"/></portlet:renderURL>">Home</a></li>
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
 			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
@@ -300,19 +307,26 @@
     
     <div class="container">
     <h1>Answer the Question</h1>
-
-    <form action="submitAnswer.jsp" method="post">
-        <label for="question" >Question:</label>
-        <p>This is the question you need to answer.</p>
+     <% 
+     long quesId = PanasonicWebPortlet.getquesId();
+     question ques = questionLocalServiceUtil.getquestion(quesId); 
+     String questitle = ques.getQuesTitle();
+     String quesdesc = ques.getQuesDesc();
+     %>
+    <aui:form method="post" action="${addanswerActionURL}">
+        <label for="question" >Question:<%=questitle %></label>
         
-        <label for="answer">Your Answer:</label>
-        <textarea name="answer" rows="4" cols="50"></textarea>
+        <p><%=quesdesc %></p>
+        <aui:input cssClass="aui-hide" type="text"  name= "questionid" value= "<%=quesId %>" label=""/>
+        <label for="Answer"><i class="zmdi zmdi-lock"></i></label> <aui:input
+									type="textarea" name="answer" id="answer"
+									placeholder="Your Answer" label=""/>
         
-        <input type="submit" value="Submit Answer" >
-    </form>
+        <input type="submit" value="Submit Answer">
+    </aui:form>
 </div>
      
-      <aui:button  value="Post Answer"  onClick=" <%=id  %>"></aui:button>
+    
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
 </body>
 </html>

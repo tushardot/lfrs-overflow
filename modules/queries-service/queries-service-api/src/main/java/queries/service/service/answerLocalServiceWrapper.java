@@ -216,6 +216,20 @@ public class answerLocalServiceWrapper
 		return _answerLocalService.getActionableDynamicQuery();
 	}
 
+	@Override
+	public java.util.List<queries.service.model.answer> getansbyquesid(
+		long id) {
+
+		return _answerLocalService.getansbyquesid(id);
+	}
+
+	@Override
+	public java.util.List<queries.service.model.answer> getansbyuser(
+		String username) {
+
+		return _answerLocalService.getansbyuser(username);
+	}
+
 	/**
 	 * Returns the answer with the primary key.
 	 *

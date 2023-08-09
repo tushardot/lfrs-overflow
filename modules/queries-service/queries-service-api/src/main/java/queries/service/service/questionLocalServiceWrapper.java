@@ -247,6 +247,13 @@ public class questionLocalServiceWrapper
 		return _questionLocalService.getPersistedModel(primaryKeyObj);
 	}
 
+	@Override
+	public java.util.List<queries.service.model.question> getquesbyuser(
+		String user) {
+
+		return _questionLocalService.getquesbyuser(user);
+	}
+
 	/**
 	 * Returns the question with the primary key.
 	 *
