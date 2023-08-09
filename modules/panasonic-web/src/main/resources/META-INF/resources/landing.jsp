@@ -303,7 +303,17 @@ body {
  .aui-hide{
  display: none;
  }
-  	
+   
+    .post-by {
+    		width: 150px;
+    		
+    		margin-left: 550px;
+            background-color: #e0e0e0;
+            padding: 2px 5px;
+            font-size: 12px;
+            border-radius: 3px;
+        }
+    
   	
     </style>
     
@@ -326,7 +336,7 @@ body {
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     </nav>
-    
+     
      <div class="container">
      <div class="card" style="width: 18rem;">
 	<div class="card-body">
@@ -351,6 +361,7 @@ body {
         List<answer> ans = PanasonicWebPortlet.getansbyqid(id);
         System.out.println(ans);
     %>
+
            <aui:form method="post" action="${queryActionURL}"> 
             <div class="question-card">
              <div class="user-info">
@@ -374,7 +385,9 @@ body {
                 		%>
                 		<div class="answer">
                         <p><%=ans1.getAnsDesc() %></p>
+                        <div class="post-by">Posted by:<%=ans1.getUserName() %></div>
                     </div>
+                    
                     <% 
                 	}
                 }
@@ -387,6 +400,7 @@ body {
             </aui:form>
             <!-- Add more question cards here as needed -->
             
+        
      
     <% } %>
        </div>
