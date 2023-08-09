@@ -1,0 +1,4 @@
+Bundle-Name: sendmail-web
+Bundle-SymbolicName: sendmail.web
+Bundle-Version: 1.0.0
+Export-Package: sendmail.web.constants

@@ -1,0 +1,10 @@
+Bundle-Name: panasonic-service-api
+Bundle-SymbolicName: panasonic.service.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	panasonic.service.exception,\
+	panasonic.service.model,\
+	panasonic.service.service,\
+	panasonic.service.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../panasonic-service-service/service.xml

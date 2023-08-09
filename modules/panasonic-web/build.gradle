@@ -1,0 +1,9 @@
+dependencies {
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+
+	cssBuilder group: "com.liferay", name: "com.liferay.css.builder", version: "3.1.0"
+	
+	compileOnly project(":modules:panasonic-service:panasonic-service-api")
+	compileOnly project(":modules:queries-service:queries-service-api")
+	    implementation group: 'javax.mail', name: 'javax.mail-api', version: '1.6.2'
+}

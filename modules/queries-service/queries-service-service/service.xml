@@ -1,0 +1,105 @@
+<?xml version="1.0"?>
+<!DOCTYPE service-builder PUBLIC "-//Liferay//DTD Service Builder 7.3.0//EN" "http://www.liferay.com/dtd/liferay-service-builder_7_3_0.dtd">
+
+<service-builder dependency-injector="ds" package-path="queries.service">
+	<namespace>queries</namespace>
+	<!--<entity data-source="sampleDataSource" local-service="true" name="Foo" remote-service="false" session-factory="sampleSessionFactory" table="foo" tx-manager="sampleTransactionManager uuid="true"">-->
+	<entity local-service="true" name="question" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="quesId" primary="true" type="long" />
+
+		
+
+		<!-- Audit fields -->
+
+		
+		<column name="quesTitle" type="String" />
+		<column name="quesDesc" type="String" />
+
+			
+		<column name="userName" type="String"/>
+
+		<!-- Other fields -->
+
+		<column name="field1" type="String" />
+		<column name="field2" type="boolean" />
+		<column name="field3" type="int" />
+		<column name="field4" type="Date" />
+		<column name="field5" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="quesId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="userName" return-type="question">
+			<finder-column name="userName" />
+		</finder>
+		<finder name="quesId" return-type="question">
+			<finder-column name="quesId" />
+		</finder>
+		
+
+		<!-- References -->
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+	</entity>
+	
+	<entity local-service="true" name="answer" remote-service="true" uuid="true">
+
+		<!-- PK fields -->
+
+		<column name="ansId" primary="true" type="long" />
+
+		
+
+		<!-- Audit fields -->
+
+		
+		<column name="ansTitle" type="String" />
+		<column name="ansDesc" type="String" />
+		<column name="userName" type="String"/>
+
+				<!-- FK fields -->
+		
+		<column name="quesId" type="long"/>
+
+		<!-- Other fields -->
+
+		<column name="field1" type="String" />
+		<column name="field2" type="boolean" />
+		<column name="field3" type="int" />
+		<column name="field4" type="Date" />
+		<column name="field5" type="String" />
+
+		<!-- Order -->
+
+		<order by="asc">
+			<order-column name="ansId" />
+		</order>
+
+		<!-- Finder methods -->
+
+		<finder name="userName" return-type="answer">
+			<finder-column name="userName" />
+		</finder>
+		<finder name="quesId" return-type="question">
+			<finder-column name="quesId" />
+		</finder>
+		<finder name="ansId" return-type="answer">
+			<finder-column name="ansId" />
+		</finder>
+		
+
+		<!-- References -->
+
+		<reference entity="AssetEntry" package-path="com.liferay.portlet.asset" />
+		<reference entity="AssetTag" package-path="com.liferay.portlet.asset" />
+	</entity>
+</service-builder>

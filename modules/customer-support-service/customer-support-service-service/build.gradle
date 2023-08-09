@@ -1,0 +1,11 @@
+dependencies {
+	compile project(":modules:customer-support-service:customer-support-service-api")
+
+	compileOnly group: "com.liferay.portal", name: "release.dxp.api"
+}
+
+buildService {
+	apiDir = "../customer-support-service-api/src/main/java"
+}
+
+group = "com.liferay.customer.support"

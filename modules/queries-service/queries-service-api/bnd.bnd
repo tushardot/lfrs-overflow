@@ -1,0 +1,10 @@
+Bundle-Name: queries-service-api
+Bundle-SymbolicName: queries.service.api
+Bundle-Version: 1.0.0
+Export-Package:\
+	queries.service.exception,\
+	queries.service.model,\
+	queries.service.service,\
+	queries.service.service.persistence
+-check: EXPORTS
+-includeresource: META-INF/service.xml=../queries-service-service/service.xml

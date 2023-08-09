@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<model-hints>
+	<model name="queries.service.model.answer">
+		<field name="uuid" type="String" />
+		<field name="ansId" type="long" />
+		<field name="ansTitle" type="String" />
+		<field name="ansDesc" type="String" />
+		<field name="userName" type="String" />
+		<field name="quesId" type="long" />
+		<field name="field1" type="String" />
+		<field name="field2" type="boolean" />
+		<field name="field3" type="int" />
+		<field name="field4" type="Date" />
+		<field name="field5" type="String" />
+	</model>
+	<model name="queries.service.model.question">
+		<field name="uuid" type="String" />
+		<field name="quesId" type="long" />
+		<field name="quesTitle" type="String" />
+		<field name="quesDesc" type="String" />
+		<field name="userName" type="String" />
+		<field name="field1" type="String" />
+		<field name="field2" type="boolean" />
+		<field name="field3" type="int" />
+		<field name="field4" type="Date" />
+		<field name="field5" type="String" />
+	</model>
+</model-hints>
