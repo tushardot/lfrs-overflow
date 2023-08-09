@@ -21,7 +21,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Question Form</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
-    <style>
+    
+	 <style>
     	*{
     		box-sizing: border-box;
     		padding: 0;
@@ -34,14 +35,14 @@
   		
   		 body {
    			 font-family: sans-serif;
-   			 overflow: hidden;
   		}
   				
   		.nav ul{
   			background: #1c395e;
-   			padding: 5px 20px;
+   			padding: 0px 20px;
    			width: 100%;
    			margin-left: -16px;
+   			margin-top: -16px;
   		}
   		
   		.nav li{
@@ -222,9 +223,6 @@
         	padding-right: 0;
     	}
   	}
-  	.zmdi {
-  	margin:50px auto;
-  	}
     </style>
     
     <script
@@ -290,43 +288,36 @@
         }
     </style>
 </head>
-<body>
-<nav class="nav">
+	<nav class="nav">
         <ul class="menu">
 			<li><img src="https://media.trustradius.com/product-logos/k2/oa/612TV5WCJ19M.PNG" width="50px"></li>
             <li class="logo"><a href="#"><b>LiferayOverflow</b></a></li>
-            <li class="item"><img src=""><a href="#">Home</a></li>
+            <li class="item"><img src=""><a href="<portlet:renderURL><portlet:param name="mvcPath" value="/landing.jsp"/></portlet:renderURL>">Home</a></li>
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
 			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
-            <li class="item button"><a href="#">Log In</a></li>
-            <aui:button type="submit" value="ques" class="item button" onClick="<%=quespage.toString()%>"></aui:button>
-            <aui:button type="submit" value="Log In" class="item button" onClick="<%=loginpage.toString()%>"></aui:button>
-            <aui:button type="submit" value="Sugn Up" class="item button" onClick="<%=createuserpage.toString()%>"></aui:button>
-            <li class="item button secondary"><a href="#">Sign Up</a></li>
+<%--             <li class="item button"><aui:button type="submit" value="Ask Ques" class="item button" onClick="<%=quespage.toString()%>"></aui:button><li> --%>
+            <li class="item button"><aui:button type="submit" value="Log In" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li>
+            <li class="item button"><aui:button type="submit" value="Sign Up" class="item button" onClick="<%=createuserpage.toString()%>"></aui:button></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     </nav>
+    
     <div class="container">
         <h1>Ask a Question</h1>
         <aui:form method="post" action="${addquesActionURL}">
-          
-            <aui id="description" name="description" rows="4" cols="50" required></textarea>
             
             	<div class="form-group">
-            	    
-								<label for="Question Title:">Question Title</label> <aui:input
-									type="text" name="title" id="title" placeholder="Question Title:" label=""/>
-							</div>
-							<div class="form-group">
-								<label for="Question Description:"></label> <aui:input
-									type="textarea" name="desc" id="desc"
-									placeholder="Question Description:" label=""/>
-							</div>
-							<div class="form-group">
-            <input type="submit" value="Submit">
-        </aui:form>
-        
-    </div>
+            	    <aui:input type="text" name="title" id="title" placeholder="Question Title:" label=""/>
+				</div>
+				
+				<div class="form-group">
+					<aui:input type="textarea" name="desc" id="desc" placeholder="Question Description:" label=""/>
+				</div>
+							
+				<div class="form-group">
+            		<input type="submit" value="Submit">
+        		</aui:form>
+	</div>
 </body>
 </html>

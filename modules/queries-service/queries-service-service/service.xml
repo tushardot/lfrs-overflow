@@ -37,7 +37,7 @@
 
 		<!-- Finder methods -->
 
-		<finder name="userName" return-type="question">
+		<finder name="userName" return-type="Collection">
 			<finder-column name="userName" />
 		</finder>
 		<finder name="quesId" return-type="question">
@@ -86,10 +86,10 @@
 
 		<!-- Finder methods -->
 
-		<finder name="userName" return-type="answer">
+		<finder name="userName" return-type="Collection">
 			<finder-column name="userName" />
 		</finder>
-		<finder name="quesId" return-type="question">
+		<finder name="quesId" return-type="Collection">
 			<finder-column name="quesId" />
 		</finder>
 		<finder name="ansId" return-type="answer">

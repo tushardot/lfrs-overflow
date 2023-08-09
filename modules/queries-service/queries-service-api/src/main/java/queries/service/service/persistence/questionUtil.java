@@ -282,51 +282,161 @@ public class questionUtil {
 	}
 
 	/**
-	 * Returns the question where userName = &#63; or throws a <code>NoSuchquestionException</code> if it could not be found.
+	 * Returns all the questions where userName = &#63;.
 	 *
 	 * @param userName the user name
-	 * @return the matching question
-	 * @throws NoSuchquestionException if a matching question could not be found
+	 * @return the matching questions
 	 */
-	public static question findByuserName(String userName)
-		throws queries.service.exception.NoSuchquestionException {
-
+	public static List<question> findByuserName(String userName) {
 		return getPersistence().findByuserName(userName);
 	}
 
 	/**
-	 * Returns the question where userName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns a range of all the questions where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>questionModelImpl</code>.
+	 * </p>
 	 *
 	 * @param userName the user name
-	 * @return the matching question, or <code>null</code> if a matching question could not be found
+	 * @param start the lower bound of the range of questions
+	 * @param end the upper bound of the range of questions (not inclusive)
+	 * @return the range of matching questions
 	 */
-	public static question fetchByuserName(String userName) {
-		return getPersistence().fetchByuserName(userName);
+	public static List<question> findByuserName(
+		String userName, int start, int end) {
+
+		return getPersistence().findByuserName(userName, start, end);
 	}
 
 	/**
-	 * Returns the question where userName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns an ordered range of all the questions where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>questionModelImpl</code>.
+	 * </p>
 	 *
 	 * @param userName the user name
+	 * @param start the lower bound of the range of questions
+	 * @param end the upper bound of the range of questions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching questions
+	 */
+	public static List<question> findByuserName(
+		String userName, int start, int end,
+		OrderByComparator<question> orderByComparator) {
+
+		return getPersistence().findByuserName(
+			userName, start, end, orderByComparator);
+	}
+
+	/**
+	 * Returns an ordered range of all the questions where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>questionModelImpl</code>.
+	 * </p>
+	 *
+	 * @param userName the user name
+	 * @param start the lower bound of the range of questions
+	 * @param end the upper bound of the range of questions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
 	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching question, or <code>null</code> if a matching question could not be found
+	 * @return the ordered range of matching questions
 	 */
-	public static question fetchByuserName(
-		String userName, boolean useFinderCache) {
+	public static List<question> findByuserName(
+		String userName, int start, int end,
+		OrderByComparator<question> orderByComparator, boolean useFinderCache) {
 
-		return getPersistence().fetchByuserName(userName, useFinderCache);
+		return getPersistence().findByuserName(
+			userName, start, end, orderByComparator, useFinderCache);
 	}
 
 	/**
-	 * Removes the question where userName = &#63; from the database.
+	 * Returns the first question in the ordered set where userName = &#63;.
 	 *
 	 * @param userName the user name
-	 * @return the question that was removed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching question
+	 * @throws NoSuchquestionException if a matching question could not be found
 	 */
-	public static question removeByuserName(String userName)
+	public static question findByuserName_First(
+			String userName, OrderByComparator<question> orderByComparator)
 		throws queries.service.exception.NoSuchquestionException {
 
-		return getPersistence().removeByuserName(userName);
+		return getPersistence().findByuserName_First(
+			userName, orderByComparator);
+	}
+
+	/**
+	 * Returns the first question in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching question, or <code>null</code> if a matching question could not be found
+	 */
+	public static question fetchByuserName_First(
+		String userName, OrderByComparator<question> orderByComparator) {
+
+		return getPersistence().fetchByuserName_First(
+			userName, orderByComparator);
+	}
+
+	/**
+	 * Returns the last question in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching question
+	 * @throws NoSuchquestionException if a matching question could not be found
+	 */
+	public static question findByuserName_Last(
+			String userName, OrderByComparator<question> orderByComparator)
+		throws queries.service.exception.NoSuchquestionException {
+
+		return getPersistence().findByuserName_Last(
+			userName, orderByComparator);
+	}
+
+	/**
+	 * Returns the last question in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching question, or <code>null</code> if a matching question could not be found
+	 */
+	public static question fetchByuserName_Last(
+		String userName, OrderByComparator<question> orderByComparator) {
+
+		return getPersistence().fetchByuserName_Last(
+			userName, orderByComparator);
+	}
+
+	/**
+	 * Returns the questions before and after the current question in the ordered set where userName = &#63;.
+	 *
+	 * @param quesId the primary key of the current question
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next question
+	 * @throws NoSuchquestionException if a question with the primary key could not be found
+	 */
+	public static question[] findByuserName_PrevAndNext(
+			long quesId, String userName,
+			OrderByComparator<question> orderByComparator)
+		throws queries.service.exception.NoSuchquestionException {
+
+		return getPersistence().findByuserName_PrevAndNext(
+			quesId, userName, orderByComparator);
+	}
+
+	/**
+	 * Removes all the questions where userName = &#63; from the database.
+	 *
+	 * @param userName the user name
+	 */
+	public static void removeByuserName(String userName) {
+		getPersistence().removeByuserName(userName);
 	}
 
 	/**

@@ -16,8 +16,11 @@ package queries.service.service.impl;
 
 import com.liferay.portal.aop.AopService;
 
+import java.util.List;
+
 import org.osgi.service.component.annotations.Component;
 
+import queries.service.model.question;
 import queries.service.service.base.questionLocalServiceBaseImpl;
 
 /**
@@ -28,4 +31,7 @@ import queries.service.service.base.questionLocalServiceBaseImpl;
 	service = AopService.class
 )
 public class questionLocalServiceImpl extends questionLocalServiceBaseImpl {
+	public List<question> getquesbyuser(String user){
+		return questionPersistence.findByuserName(user);
+	}
 }
