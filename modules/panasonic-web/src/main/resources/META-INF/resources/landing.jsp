@@ -7,11 +7,10 @@
 
 <portlet:actionURL name="queryinfo" var="queryActionURL"></portlet:actionURL>
 
-
-
 <portlet:renderURL var="querypage">
 <portlet:param name="mvcPath" value="/query.jsp"/>
 </portlet:renderURL>
+
 <portlet:renderURL var="loginpage">
 <portlet:param name="mvcPath" value="/login.jsp"/>
 </portlet:renderURL>
@@ -19,9 +18,12 @@
 <portlet:renderURL var="createuserpage">
 <portlet:param name="mvcPath" value="/createuser.jsp"/>
 </portlet:renderURL>
+
 <portlet:renderURL var="quespage">
 <portlet:param name="mvcPath" value="/addques.jsp"/>
 </portlet:renderURL>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -47,9 +49,10 @@
   				
   		.nav ul{
   			background: #1c395e;
-   			padding: 5px 20px;
+   			padding: 0px 20px;
    			width: 100%;
    			margin-left: -16px;
+   			margin-top: -16px;
   		}
   		
   		.nav li{
@@ -329,16 +332,21 @@ body {
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
 			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
-            <li class="item button"><a href="#">Log In</a></li>
-            <aui:button type="submit" value="Ask Ques" class="item button" onClick="<%=quespage.toString()%>"></aui:button>
-            <aui:button type="submit" value="Log In" class="item button" onClick="<%=loginpage.toString()%>"></aui:button>
-            <aui:button type="submit" value="Sugn Up" class="item button" onClick="<%=createuserpage.toString()%>"></aui:button>
-            <li class="item button secondary"><a href="#">Sign Up</a></li>
+            <li class="item button secondary"><aui:button type="submit" value="Log out" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     </nav>
      
      <div class="container">
+     <div class="card" style="width: 18rem;">
+	<div class="card-body">
+		<aui:fieldset label="Liferay Overflow">
+			<aui:button-row>
+   				<div class="item button"><aui:button type="submit" value="Ask Question" class="item button" onClick="<%=quespage.toString()%>"></aui:button></div>
+			</aui:button-row>
+		</aui:fieldset>
+	</div>
+</div>
         <h1>Questions and Answers</h1>
         <div class="questions">
     <% List<question>  queries = PanasonicWebPortlet.getallqueries();
