@@ -184,39 +184,139 @@ public interface answerPersistence extends BasePersistence<answer> {
 	public int countByUuid(String uuid);
 
 	/**
-	 * Returns the answer where userName = &#63; or throws a <code>NoSuchanswerException</code> if it could not be found.
+	 * Returns all the answers where userName = &#63;.
 	 *
 	 * @param userName the user name
-	 * @return the matching answer
+	 * @return the matching answers
+	 */
+	public java.util.List<answer> findByuserName(String userName);
+
+	/**
+	 * Returns a range of all the answers where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>answerModelImpl</code>.
+	 * </p>
+	 *
+	 * @param userName the user name
+	 * @param start the lower bound of the range of answers
+	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @return the range of matching answers
+	 */
+	public java.util.List<answer> findByuserName(
+		String userName, int start, int end);
+
+	/**
+	 * Returns an ordered range of all the answers where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>answerModelImpl</code>.
+	 * </p>
+	 *
+	 * @param userName the user name
+	 * @param start the lower bound of the range of answers
+	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching answers
+	 */
+	public java.util.List<answer> findByuserName(
+		String userName, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<answer>
+			orderByComparator);
+
+	/**
+	 * Returns an ordered range of all the answers where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>answerModelImpl</code>.
+	 * </p>
+	 *
+	 * @param userName the user name
+	 * @param start the lower bound of the range of answers
+	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching answers
+	 */
+	public java.util.List<answer> findByuserName(
+		String userName, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<answer>
+			orderByComparator,
+		boolean useFinderCache);
+
+	/**
+	 * Returns the first answer in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching answer
 	 * @throws NoSuchanswerException if a matching answer could not be found
 	 */
-	public answer findByuserName(String userName) throws NoSuchanswerException;
-
-	/**
-	 * Returns the answer where userName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
-	 *
-	 * @param userName the user name
-	 * @return the matching answer, or <code>null</code> if a matching answer could not be found
-	 */
-	public answer fetchByuserName(String userName);
-
-	/**
-	 * Returns the answer where userName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
-	 *
-	 * @param userName the user name
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching answer, or <code>null</code> if a matching answer could not be found
-	 */
-	public answer fetchByuserName(String userName, boolean useFinderCache);
-
-	/**
-	 * Removes the answer where userName = &#63; from the database.
-	 *
-	 * @param userName the user name
-	 * @return the answer that was removed
-	 */
-	public answer removeByuserName(String userName)
+	public answer findByuserName_First(
+			String userName,
+			com.liferay.portal.kernel.util.OrderByComparator<answer>
+				orderByComparator)
 		throws NoSuchanswerException;
+
+	/**
+	 * Returns the first answer in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching answer, or <code>null</code> if a matching answer could not be found
+	 */
+	public answer fetchByuserName_First(
+		String userName,
+		com.liferay.portal.kernel.util.OrderByComparator<answer>
+			orderByComparator);
+
+	/**
+	 * Returns the last answer in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching answer
+	 * @throws NoSuchanswerException if a matching answer could not be found
+	 */
+	public answer findByuserName_Last(
+			String userName,
+			com.liferay.portal.kernel.util.OrderByComparator<answer>
+				orderByComparator)
+		throws NoSuchanswerException;
+
+	/**
+	 * Returns the last answer in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching answer, or <code>null</code> if a matching answer could not be found
+	 */
+	public answer fetchByuserName_Last(
+		String userName,
+		com.liferay.portal.kernel.util.OrderByComparator<answer>
+			orderByComparator);
+
+	/**
+	 * Returns the answers before and after the current answer in the ordered set where userName = &#63;.
+	 *
+	 * @param ansId the primary key of the current answer
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next answer
+	 * @throws NoSuchanswerException if a answer with the primary key could not be found
+	 */
+	public answer[] findByuserName_PrevAndNext(
+			long ansId, String userName,
+			com.liferay.portal.kernel.util.OrderByComparator<answer>
+				orderByComparator)
+		throws NoSuchanswerException;
+
+	/**
+	 * Removes all the answers where userName = &#63; from the database.
+	 *
+	 * @param userName the user name
+	 */
+	public void removeByuserName(String userName);
 
 	/**
 	 * Returns the number of answers where userName = &#63;.
@@ -227,38 +327,138 @@ public interface answerPersistence extends BasePersistence<answer> {
 	public int countByuserName(String userName);
 
 	/**
-	 * Returns the answer where quesId = &#63; or throws a <code>NoSuchanswerException</code> if it could not be found.
+	 * Returns all the answers where quesId = &#63;.
 	 *
 	 * @param quesId the ques ID
-	 * @return the matching answer
+	 * @return the matching answers
+	 */
+	public java.util.List<answer> findByquesId(long quesId);
+
+	/**
+	 * Returns a range of all the answers where quesId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>answerModelImpl</code>.
+	 * </p>
+	 *
+	 * @param quesId the ques ID
+	 * @param start the lower bound of the range of answers
+	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @return the range of matching answers
+	 */
+	public java.util.List<answer> findByquesId(long quesId, int start, int end);
+
+	/**
+	 * Returns an ordered range of all the answers where quesId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>answerModelImpl</code>.
+	 * </p>
+	 *
+	 * @param quesId the ques ID
+	 * @param start the lower bound of the range of answers
+	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching answers
+	 */
+	public java.util.List<answer> findByquesId(
+		long quesId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<answer>
+			orderByComparator);
+
+	/**
+	 * Returns an ordered range of all the answers where quesId = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>answerModelImpl</code>.
+	 * </p>
+	 *
+	 * @param quesId the ques ID
+	 * @param start the lower bound of the range of answers
+	 * @param end the upper bound of the range of answers (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching answers
+	 */
+	public java.util.List<answer> findByquesId(
+		long quesId, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<answer>
+			orderByComparator,
+		boolean useFinderCache);
+
+	/**
+	 * Returns the first answer in the ordered set where quesId = &#63;.
+	 *
+	 * @param quesId the ques ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching answer
 	 * @throws NoSuchanswerException if a matching answer could not be found
 	 */
-	public answer findByquesId(long quesId) throws NoSuchanswerException;
+	public answer findByquesId_First(
+			long quesId,
+			com.liferay.portal.kernel.util.OrderByComparator<answer>
+				orderByComparator)
+		throws NoSuchanswerException;
 
 	/**
-	 * Returns the answer where quesId = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the first answer in the ordered set where quesId = &#63;.
 	 *
 	 * @param quesId the ques ID
-	 * @return the matching answer, or <code>null</code> if a matching answer could not be found
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching answer, or <code>null</code> if a matching answer could not be found
 	 */
-	public answer fetchByquesId(long quesId);
+	public answer fetchByquesId_First(
+		long quesId,
+		com.liferay.portal.kernel.util.OrderByComparator<answer>
+			orderByComparator);
 
 	/**
-	 * Returns the answer where quesId = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the last answer in the ordered set where quesId = &#63;.
 	 *
 	 * @param quesId the ques ID
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching answer, or <code>null</code> if a matching answer could not be found
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching answer
+	 * @throws NoSuchanswerException if a matching answer could not be found
 	 */
-	public answer fetchByquesId(long quesId, boolean useFinderCache);
+	public answer findByquesId_Last(
+			long quesId,
+			com.liferay.portal.kernel.util.OrderByComparator<answer>
+				orderByComparator)
+		throws NoSuchanswerException;
 
 	/**
-	 * Removes the answer where quesId = &#63; from the database.
+	 * Returns the last answer in the ordered set where quesId = &#63;.
 	 *
 	 * @param quesId the ques ID
-	 * @return the answer that was removed
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching answer, or <code>null</code> if a matching answer could not be found
 	 */
-	public answer removeByquesId(long quesId) throws NoSuchanswerException;
+	public answer fetchByquesId_Last(
+		long quesId,
+		com.liferay.portal.kernel.util.OrderByComparator<answer>
+			orderByComparator);
+
+	/**
+	 * Returns the answers before and after the current answer in the ordered set where quesId = &#63;.
+	 *
+	 * @param ansId the primary key of the current answer
+	 * @param quesId the ques ID
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next answer
+	 * @throws NoSuchanswerException if a answer with the primary key could not be found
+	 */
+	public answer[] findByquesId_PrevAndNext(
+			long ansId, long quesId,
+			com.liferay.portal.kernel.util.OrderByComparator<answer>
+				orderByComparator)
+		throws NoSuchanswerException;
+
+	/**
+	 * Removes all the answers where quesId = &#63; from the database.
+	 *
+	 * @param quesId the ques ID
+	 */
+	public void removeByquesId(long quesId);
 
 	/**
 	 * Returns the number of answers where quesId = &#63;.

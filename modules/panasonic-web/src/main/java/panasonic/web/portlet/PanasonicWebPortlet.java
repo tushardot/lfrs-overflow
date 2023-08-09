@@ -4,7 +4,9 @@ import panasonic.service.model.channel;
 import panasonic.service.service.channelLocalServiceUtil;
 import panasonic.service.service.persistence.channelPersistence;
 import panasonic.web.constants.PanasonicWebPortletKeys;
+import queries.service.model.answer;
 import queries.service.model.question;
+import queries.service.service.answerLocalServiceUtil;
 import queries.service.service.questionLocalServiceUtil;
 
 import com.liferay.mail.kernel.model.MailMessage;
@@ -46,8 +48,8 @@ public class PanasonicWebPortlet extends MVCPortlet {
 	
 	
 	
-	String localuser = "";
-	long quesId;
+	static String localuser = "";
+	static long quesId;
 	//Add user method
 	public void addinfo(ActionRequest actionRequest, ActionResponse actionResponse) throws Exception
 	{
@@ -355,10 +357,36 @@ public class PanasonicWebPortlet extends MVCPortlet {
 	}
 
 	
-	 //get Quesion Id 
-	public long getquesid() {
-		return quesId;
+	
+	//add answer 
+	public void addanswerinfo(ActionRequest actionRequest, ActionResponse actionResponse) {
+		quesId = Long.valueOf(ParamUtil.getString(actionRequest,"questionid"));
+		String ansdesc = ParamUtil.getString(actionRequest,"answer");
+		int anscount = answerLocalServiceUtil.getanswersCount();
+		answer newans = answerLocalServiceUtil.createanswer(anscount + 1);
+		newans.setUserName(localuser);
+		newans.setAnsDesc(ansdesc);
+		newans.setQuesId(quesId);
+		answerLocalServiceUtil.addanswer(newans);
+		System.out.println("Answer add successfully");
+		actionResponse.setRenderParameter("mvcPath", "/META-INF/resources/landing.jsp");
 	}
+	
+	
+	 //get Quesion Id 
+	public static long getquesId() {
+		return quesId;
+		
+	}
+	//get answer by questionId
+	public static List<answer> getansbyqid(long id){
+		return answerLocalServiceUtil.getansbyquesid(id);
+	}
+	//get Usename
+	public static String getuser() {
+		return localuser;
+	}
+	
 	
 	//method for generate otp
 	   public static String generateOTP(int length) {

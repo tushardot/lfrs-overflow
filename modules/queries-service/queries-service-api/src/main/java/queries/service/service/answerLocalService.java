@@ -196,6 +196,12 @@ public interface answerLocalService
 	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
 	public ActionableDynamicQuery getActionableDynamicQuery();
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<answer> getansbyquesid(long id);
+
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<answer> getansbyuser(String username);
+
 	/**
 	 * Returns the answer with the primary key.
 	 *

@@ -205,6 +205,14 @@ public class answerLocalServiceUtil {
 		return getService().getActionableDynamicQuery();
 	}
 
+	public static List<answer> getansbyquesid(long id) {
+		return getService().getansbyquesid(id);
+	}
+
+	public static List<answer> getansbyuser(String username) {
+		return getService().getansbyuser(username);
+	}
+
 	/**
 	 * Returns the answer with the primary key.
 	 *
