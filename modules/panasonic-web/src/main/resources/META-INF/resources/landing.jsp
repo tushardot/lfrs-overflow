@@ -332,20 +332,18 @@ body {
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
 			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
+			<li class="item button"><aui:button type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button></li>
             <li class="item button secondary"><aui:button type="submit" value="Log out" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     </nav>
      
+     	
+     	
      <div class="container">
+     
      <div class="card" style="width: 18rem;">
-	<div class="card-body">
-		<aui:fieldset label="Liferay Overflow">
-			<aui:button-row>
-   				<div class="item button"><aui:button type="submit" value="Ask Question" class="item button" onClick="<%=quespage.toString()%>"></aui:button></div>
-			</aui:button-row>
-		</aui:fieldset>
-	</div>
+   		
 </div>
         <h1>Questions and Answers</h1>
         <div class="questions">
