@@ -230,6 +230,10 @@ public class questionLocalServiceUtil {
 		return getService().getPersistedModel(primaryKeyObj);
 	}
 
+	public static List<question> getquesbyuser(String user) {
+		return getService().getquesbyuser(user);
+	}
+
 	/**
 	 * Returns the question with the primary key.
 	 *

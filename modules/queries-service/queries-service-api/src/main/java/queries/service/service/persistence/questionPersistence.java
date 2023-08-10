@@ -184,40 +184,139 @@ public interface questionPersistence extends BasePersistence<question> {
 	public int countByUuid(String uuid);
 
 	/**
-	 * Returns the question where userName = &#63; or throws a <code>NoSuchquestionException</code> if it could not be found.
+	 * Returns all the questions where userName = &#63;.
 	 *
 	 * @param userName the user name
-	 * @return the matching question
+	 * @return the matching questions
+	 */
+	public java.util.List<question> findByuserName(String userName);
+
+	/**
+	 * Returns a range of all the questions where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>questionModelImpl</code>.
+	 * </p>
+	 *
+	 * @param userName the user name
+	 * @param start the lower bound of the range of questions
+	 * @param end the upper bound of the range of questions (not inclusive)
+	 * @return the range of matching questions
+	 */
+	public java.util.List<question> findByuserName(
+		String userName, int start, int end);
+
+	/**
+	 * Returns an ordered range of all the questions where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>questionModelImpl</code>.
+	 * </p>
+	 *
+	 * @param userName the user name
+	 * @param start the lower bound of the range of questions
+	 * @param end the upper bound of the range of questions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @return the ordered range of matching questions
+	 */
+	public java.util.List<question> findByuserName(
+		String userName, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<question>
+			orderByComparator);
+
+	/**
+	 * Returns an ordered range of all the questions where userName = &#63;.
+	 *
+	 * <p>
+	 * Useful when paginating results. Returns a maximum of <code>end - start</code> instances. <code>start</code> and <code>end</code> are not primary keys, they are indexes in the result set. Thus, <code>0</code> refers to the first result in the set. Setting both <code>start</code> and <code>end</code> to <code>QueryUtil#ALL_POS</code> will return the full result set. If <code>orderByComparator</code> is specified, then the query will include the given ORDER BY logic. If <code>orderByComparator</code> is absent, then the query will include the default ORDER BY logic from <code>questionModelImpl</code>.
+	 * </p>
+	 *
+	 * @param userName the user name
+	 * @param start the lower bound of the range of questions
+	 * @param end the upper bound of the range of questions (not inclusive)
+	 * @param orderByComparator the comparator to order the results by (optionally <code>null</code>)
+	 * @param useFinderCache whether to use the finder cache
+	 * @return the ordered range of matching questions
+	 */
+	public java.util.List<question> findByuserName(
+		String userName, int start, int end,
+		com.liferay.portal.kernel.util.OrderByComparator<question>
+			orderByComparator,
+		boolean useFinderCache);
+
+	/**
+	 * Returns the first question in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching question
 	 * @throws NoSuchquestionException if a matching question could not be found
 	 */
-	public question findByuserName(String userName)
+	public question findByuserName_First(
+			String userName,
+			com.liferay.portal.kernel.util.OrderByComparator<question>
+				orderByComparator)
 		throws NoSuchquestionException;
 
 	/**
-	 * Returns the question where userName = &#63; or returns <code>null</code> if it could not be found. Uses the finder cache.
+	 * Returns the first question in the ordered set where userName = &#63;.
 	 *
 	 * @param userName the user name
-	 * @return the matching question, or <code>null</code> if a matching question could not be found
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the first matching question, or <code>null</code> if a matching question could not be found
 	 */
-	public question fetchByuserName(String userName);
+	public question fetchByuserName_First(
+		String userName,
+		com.liferay.portal.kernel.util.OrderByComparator<question>
+			orderByComparator);
 
 	/**
-	 * Returns the question where userName = &#63; or returns <code>null</code> if it could not be found, optionally using the finder cache.
+	 * Returns the last question in the ordered set where userName = &#63;.
 	 *
 	 * @param userName the user name
-	 * @param useFinderCache whether to use the finder cache
-	 * @return the matching question, or <code>null</code> if a matching question could not be found
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching question
+	 * @throws NoSuchquestionException if a matching question could not be found
 	 */
-	public question fetchByuserName(String userName, boolean useFinderCache);
-
-	/**
-	 * Removes the question where userName = &#63; from the database.
-	 *
-	 * @param userName the user name
-	 * @return the question that was removed
-	 */
-	public question removeByuserName(String userName)
+	public question findByuserName_Last(
+			String userName,
+			com.liferay.portal.kernel.util.OrderByComparator<question>
+				orderByComparator)
 		throws NoSuchquestionException;
+
+	/**
+	 * Returns the last question in the ordered set where userName = &#63;.
+	 *
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the last matching question, or <code>null</code> if a matching question could not be found
+	 */
+	public question fetchByuserName_Last(
+		String userName,
+		com.liferay.portal.kernel.util.OrderByComparator<question>
+			orderByComparator);
+
+	/**
+	 * Returns the questions before and after the current question in the ordered set where userName = &#63;.
+	 *
+	 * @param quesId the primary key of the current question
+	 * @param userName the user name
+	 * @param orderByComparator the comparator to order the set by (optionally <code>null</code>)
+	 * @return the previous, current, and next question
+	 * @throws NoSuchquestionException if a question with the primary key could not be found
+	 */
+	public question[] findByuserName_PrevAndNext(
+			long quesId, String userName,
+			com.liferay.portal.kernel.util.OrderByComparator<question>
+				orderByComparator)
+		throws NoSuchquestionException;
+
+	/**
+	 * Removes all the questions where userName = &#63; from the database.
+	 *
+	 * @param userName the user name
+	 */
+	public void removeByuserName(String userName);
 
 	/**
 	 * Returns the number of questions where userName = &#63;.

@@ -214,6 +214,9 @@ public interface questionLocalService
 	public PersistedModel getPersistedModel(Serializable primaryKeyObj)
 		throws PortalException;
 
+	@Transactional(propagation = Propagation.SUPPORTS, readOnly = true)
+	public List<question> getquesbyuser(String user);
+
 	/**
 	 * Returns the question with the primary key.
 	 *
