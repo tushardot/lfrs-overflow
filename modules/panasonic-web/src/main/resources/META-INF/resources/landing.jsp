@@ -249,7 +249,7 @@ body {
 
 .container {
     max-width: 800px;
-    margin: 200px auto;
+    margin: 20px auto;
     padding: 20px;
 }
 
@@ -313,7 +313,49 @@ body {
             font-size: 12px;
             border-radius: 3px;
         }
+        
+        /*welcome card  */
     
+    
+    .welcome-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 30px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            margin: 100px auto;
+            margin-bottom: 0px;
+        }
+        .user-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50; /* Dark blue color */
+        }
+        .message {
+            font-size: 18px;
+            color: #34495e; /* Slightly lighter blue color */
+            margin-bottom: 20px;
+        }
+        .ask-button {
+            display: inline-block;
+            padding: 12px 24px;
+            background-color: #e74c3c; /* Red color */
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            text-align: center;
+            cursor: pointer;
+            font-size: 16px;
+            transition: background-color 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        .ask-button:hover {
+            background-color: #c0392b; /* Darker red on hover */
+        }
   	
     </style>
     
@@ -332,11 +374,18 @@ body {
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
 			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
-			<li class="item button"><aui:button type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button></li>
+			<%-- <li class="item button"><aui:button type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button></li> --%>
             <li class="item button secondary"><aui:button type="submit" value="Log out" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     </nav>
+    
+    <% String usern = PanasonicWebPortlet.getuser(); %>
+   <div class="welcome-card">
+    <div class="user-name">Welcome, <%=usern %>!</div>
+    <div class="message">Get ready to dive into a world of knowledge, collaboration, and problem-solving. Our Lioferay Overflow is your gateway to an expansive community of experts and learners.</div>
+    <li class="ask-button"><aui:button  class="ask-button" type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button></li>
+</div>
      
      	
      	
@@ -363,7 +412,7 @@ body {
            <aui:form method="post" action="${queryActionURL}"> 
             <div class="question-card">
              <div class="user-info">
-                    <span>asked by <%=username%> <%=id %></span> 
+                    <span>asked by <%=username%></span> 
                 </div>
                 <div class="question">
                

@@ -183,7 +183,7 @@ public class PanasonicWebPortlet extends MVCPortlet {
 			System.out.println(toAddress);
 			
 			System.out.println("mail sended for testing to " + useremail);
-			
+			actionResponse.setRenderParameter("mvcPath", "/META-INF/resources/login.jsp");
 			
          }catch(Exception e) {
 			e.printStackTrace();
