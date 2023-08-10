@@ -49,6 +49,7 @@
   		}
   				
   		.nav ul{
+  			position: fixed;
   			background: #1c395e;
    			padding: 0px 20px;
    			width: 100%;
@@ -349,41 +350,16 @@ body {
             color: #34495e; /* Slightly lighter blue color */
             margin-bottom: 20px;
         }
-        .ask-button {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #e74c3c; /* Red color */
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .ask-button:hover {
-            background-color: #c0392b; /* Darker red on hover */
-        }
         
         .user-name1{
             color: #2c3e50;
         }
         
-        
-        /* side bar */
-/*           body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }  */
 
         .container-sidebar {
             margin-top: 100px;
-            display: flex;
-            flex-wrap: wrap;
+            float: left;
+            position: fixed;
         }
 
         .sidebar {
@@ -392,12 +368,9 @@ body {
             color: #fff;
             padding: 20px;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out;
         }
 
-        .sidebar:hover {
-            transform: translateX(0);
-        }
+        
 
         .sidebar-title {
             font-size: 2rem;
@@ -412,9 +385,7 @@ body {
         .sidebar-section a {
             text-decoration: none;
             color: inherit;
-            display: flex;
             align-items: center;
-            transition: color 0.3s ease;
         }
 
         .sidebar-section a:hover {
@@ -424,12 +395,9 @@ body {
         .sidebar-icon {
             font-size: 2rem;
             margin-right: 10px;
-            flex-shrink: 0;
         }
 
-        .sidebar-content {
-            flex-grow: 1;
-        }
+  
 
         h2 {
             font-size: 1.8rem;
@@ -442,9 +410,8 @@ body {
         }
 
         .content {
-        display: "flex";
-            
-            padding: 30px;
+      float: left;
+      margin-left: 460px;
         }
 
         /* Icons */
@@ -452,17 +419,12 @@ body {
             color: #ff6f61;
         }
 
-        /* Responsive adjustments */
-        @media screen and (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
+  	  .all-div{
+  	  max-width : 80%;
+  	  margin : 0px auto;
+  	  }
+  	  
 
-            .sidebar {
-                width: 100%;
-            }
-        }
-  	
     </style>
     
     <script
@@ -485,7 +447,7 @@ body {
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     </nav>
-    
+   <div class = "all-div">
     <div class="container-sidebar">
         <div class="sidebar">
             <div class="sidebar-title">Awesome Sidebar</div>
@@ -518,7 +480,7 @@ body {
    <div class="welcome-card">
     <div class="user-name">Welcome, <%=usern %>!</div>
     <div class="message">Get ready to dive into a world of knowledge, collaboration, and problem-solving. Our Lioferay Overflow is your gateway to an expansive community of experts and learners.</div>
-    <li class="ask-button"><aui:button  class="ask-button" type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button></li>
+    <aui:button  type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button>
 </div>
      
      	
@@ -585,6 +547,7 @@ body {
      
     <% } %>
        </div>
+    </div>
     </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
