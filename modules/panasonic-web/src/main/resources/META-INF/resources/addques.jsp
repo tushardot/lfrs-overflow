@@ -1,6 +1,5 @@
 <%@ include file="/init.jsp" %>
 
-
 <portlet:actionURL name="addques" var="addquesActionURL"></portlet:actionURL>
 <portlet:renderURL var="loginpage">
 <portlet:param name="mvcPath" value="/login.jsp"/>
@@ -12,10 +11,13 @@
 <portlet:renderURL var="quespage">
 <portlet:param name="mvcPath" value="/addques.jsp"/>
 </portlet:renderURL>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/META-INF/resources/css/style.css">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
