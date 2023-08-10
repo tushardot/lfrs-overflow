@@ -247,7 +247,7 @@ body {
     background-color: #f4f4f4;
 }
 
-.container {
+.container-landing {
     max-width: 800px;
     margin: 20px auto;
     padding: 20px;
@@ -356,6 +356,10 @@ body {
         .ask-button:hover {
             background-color: #c0392b; /* Darker red on hover */
         }
+        
+        .user-name1{
+            color: #2c3e50;
+        }
   	
     </style>
     
@@ -389,7 +393,7 @@ body {
      
      	
      	
-     <div class="container">
+     <div class="container-landing">
      
      <div class="card" style="width: 18rem;">
    		
@@ -412,7 +416,7 @@ body {
            <aui:form method="post" action="${queryActionURL}"> 
             <div class="question-card">
              <div class="user-info">
-                    <span>asked by <%=username%></span> 
+                    <span>asked by <h5 class="user-name1"> <%=username%></h5></span> 
                 </div>
                 <div class="question">
                
@@ -432,7 +436,7 @@ body {
                 		%>
                 		<div class="answer">
                         <p><%=ans1.getAnsDesc() %></p>
-                        <div class="post-by">Posted by:<%=ans1.getUserName() %></div>
+                        <div class="post-by">Posted by:<h5 class="user-name1"><%=ans1.getUserName() %></h5></div>
                     </div>
                     
                     <% 
