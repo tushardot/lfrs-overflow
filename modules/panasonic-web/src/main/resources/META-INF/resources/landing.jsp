@@ -247,7 +247,7 @@ body {
     background-color: #f4f4f4;
 }
 
-.container {
+.container-landing {
     max-width: 800px;
     margin: 200px auto;
     padding: 20px;
@@ -340,7 +340,7 @@ body {
      
      	
      	
-     <div class="container">
+     <div class="container-landing">
      
      <div class="card" style="width: 18rem;">
    		
