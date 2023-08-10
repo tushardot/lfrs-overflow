@@ -240,7 +240,7 @@
             <li class="item"><a href="#">Services</a></li>
 			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
 <%--             <li class="item button"><aui:button type="submit" value="Ask Ques" class="item button" onClick="<%=quespage.toString()%>"></aui:button><li> --%>
-            <%-- <li class="item button"><aui:button type="submit" value="Log In" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li> --%>
+            <li class="item button"><aui:button type="submit" value="Log In" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li>
  <%--            <li class="item button"><aui:button type="submit" value="Sign Up" class="item button" onClick="<%=createuserpage.toString()%>"></aui:button></li> --%>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
@@ -296,7 +296,7 @@
 					</div>
 					<div class="signup-image">
 						<figure>
-							<img src="<%=request.getContextPath()%>/META-INF/resources/images/signup-image.jpg" alt="sing up image">
+							<img src="https://st.depositphotos.com/18722762/51522/v/600/depositphotos_515228796-stock-illustration-online-registration-sign-login-account.jpg" alt="sing up image">
 						</figure>
 						<a href="<%=loginpage.toString()%>" class="signup-image-link">I am already
 							member</a>

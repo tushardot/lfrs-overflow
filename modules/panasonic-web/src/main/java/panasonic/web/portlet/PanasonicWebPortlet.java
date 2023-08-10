@@ -60,6 +60,8 @@ public class PanasonicWebPortlet extends MVCPortlet {
 		String useremail = ParamUtil.getString(actionRequest,"email");
 		String name = ParamUtil.getString(actionRequest,"name");
 		String password = ParamUtil.getString(actionRequest,"pass");
+		String repassword = ParamUtil.getString(actionRequest,"re-pass");
+		if(password.equals(repassword)) {
 		newuser.setName(name);
 		newuser.setEmail(useremail);
 		newuser.setPassword(password);
@@ -190,6 +192,11 @@ public class PanasonicWebPortlet extends MVCPortlet {
 		}
 
 			}
+	  
+		else {
+			System.out.println("Password didn't match");
+		}
+	}
 	
 	//log-in user method
 	@SuppressWarnings("deprecation")
@@ -285,7 +292,7 @@ public class PanasonicWebPortlet extends MVCPortlet {
 		catch(Exception e) {
 			System.out.println("User not found");
 			
-			
+			actionResponse.setRenderParameter("mvcPath", "/META-INF/resources/forgotpass.jsp");
 			
 		}
 	}
