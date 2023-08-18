@@ -1,6 +1,5 @@
 <%@ include file="/init.jsp" %>
 
-
 <portlet:actionURL name="addques" var="addquesActionURL"></portlet:actionURL>
 <portlet:renderURL var="loginpage">
 <portlet:param name="mvcPath" value="/login.jsp"/>
@@ -12,10 +11,13 @@
 <portlet:renderURL var="quespage">
 <portlet:param name="mvcPath" value="/addques.jsp"/>
 </portlet:renderURL>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
+
 <!DOCTYPE html>
 <html>
 <link rel="stylesheet" type="text/css" href="<%=request.getContextPath()%>/META-INF/resources/css/style.css">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -247,7 +249,7 @@
             padding: 0;
             background-color: #f4f4f4;
         }
-        .container {
+        .container-question {
             max-width: 600px;
             margin: 200px auto;
             padding: 20px;
@@ -288,7 +290,7 @@
         }
     </style>
 </head>
-	<nav class="nav">
+<nav class="nav">
         <ul class="menu">
 			<li><img src="https://media.trustradius.com/product-logos/k2/oa/612TV5WCJ19M.PNG" width="50px"></li>
             <li class="logo"><a href="#"><b>LiferayOverflow</b></a></li>
@@ -296,14 +298,13 @@
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
 			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
-<%--             <li class="item button"><aui:button type="submit" value="Ask Ques" class="item button" onClick="<%=quespage.toString()%>"></aui:button><li> --%>
-            <li class="item button"><aui:button type="submit" value="Log In" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li>
-            <li class="item button"><aui:button type="submit" value="Sign Up" class="item button" onClick="<%=createuserpage.toString()%>"></aui:button></li>
+			<%-- <li class="item button"><aui:button type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button></li> --%>
+            <li class="item button secondary"><aui:button type="submit" value="Log out" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     </nav>
     
-    <div class="container">
+    <div class="container-question">
         <h1>Ask a Question</h1>
         <aui:form method="post" action="${addquesActionURL}">
             

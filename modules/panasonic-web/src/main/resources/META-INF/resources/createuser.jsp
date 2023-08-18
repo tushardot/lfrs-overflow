@@ -296,7 +296,7 @@
 					</div>
 					<div class="signup-image">
 						<figure>
-							<img src="<%=request.getContextPath()%>/META-INF/resources/images/signup-image.jpg" alt="sing up image">
+							<img src="https://st.depositphotos.com/18722762/51522/v/600/depositphotos_515228796-stock-illustration-online-registration-sign-login-account.jpg" alt="sing up image">
 						</figure>
 						<a href="<%=loginpage.toString()%>" class="signup-image-link">I am already
 							member</a>

@@ -7,11 +7,10 @@
 
 <portlet:actionURL name="queryinfo" var="queryActionURL"></portlet:actionURL>
 
-
-
 <portlet:renderURL var="querypage">
 <portlet:param name="mvcPath" value="/query.jsp"/>
 </portlet:renderURL>
+
 <portlet:renderURL var="loginpage">
 <portlet:param name="mvcPath" value="/login.jsp"/>
 </portlet:renderURL>
@@ -19,15 +18,19 @@
 <portlet:renderURL var="createuserpage">
 <portlet:param name="mvcPath" value="/createuser.jsp"/>
 </portlet:renderURL>
+
 <portlet:renderURL var="quespage">
 <portlet:param name="mvcPath" value="/addques.jsp"/>
 </portlet:renderURL>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>liferay overflow</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
     <style>
     	*{
@@ -46,10 +49,12 @@
   		}
   				
   		.nav ul{
+  			position: fixed;
   			background: #1c395e;
-   			padding: 5px 20px;
+   			padding: 0px 20px;
    			width: 100%;
    			margin-left: -16px;
+   			margin-top: -16px;
   		}
   		
   		.nav li{
@@ -232,7 +237,7 @@
   	}
   	
   	/* questions */
-  	
+  		margin-left: 10px;
   	* {
     margin: 0;
     padding: 0;
@@ -244,9 +249,9 @@ body {
     background-color: #f4f4f4;
 }
 
-.container {
+.container-landing {
     max-width: 800px;
-    margin: 200px auto;
+    margin: 20px auto;
     padding: 20px;
 }
 
@@ -300,8 +305,126 @@ body {
  .aui-hide{
  display: none;
  }
-  	
-  	
+   
+    .post-by {
+    		width: 150px;
+    		
+    		margin-left: 550px;
+            background-color: #e0e0e0;
+            padding: 2px 5px;
+            font-size: 12px;
+            border-radius: 3px;
+        }
+        
+        .ask-by {
+    		width: 150px;
+    		
+    	
+            background-color: #e0e0e0;
+            padding: 2px 5px;
+            font-size: 12px;
+            border-radius: 3px;
+        }
+        /*welcome card  */
+    
+    
+    .welcome-card {
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+            padding: 30px;
+            width: 80%;
+            max-width: 800px;
+            text-align: center;
+            margin: 100px auto;
+            margin-bottom: 0px;
+        }
+        .user-name {
+            font-size: 28px;
+            font-weight: bold;
+            margin-bottom: 10px;
+            color: #2c3e50; /* Dark blue color */
+        }
+        .message {
+            font-size: 18px;
+            color: #34495e; /* Slightly lighter blue color */
+            margin-bottom: 20px;
+        }
+        
+        .user-name1{
+            color: #2c3e50;
+        }
+        
+
+        .container-sidebar {
+            margin-top: 100px;
+            float: left;
+            position: fixed;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+        }
+
+        
+
+        .sidebar-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff6f61;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-section a {
+            text-decoration: none;
+            color: inherit;
+            align-items: center;
+        }
+
+        .sidebar-section a:hover {
+            color: #ff6f61;
+        }
+
+        .sidebar-icon {
+            font-size: 2rem;
+            margin-right: 10px;
+        }
+
+  
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .content {
+      float: left;
+      margin-left: 460px;
+        }
+
+        /* Icons */
+        .fa-globe-americas {
+            color: #ff6f61;
+        }
+
+  	  .all-div{
+  	  max-width : 80%;
+  	  margin : 0px auto;
+  	  }
+  	  
+
     </style>
     
     <script
@@ -319,16 +442,54 @@ body {
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
 			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
-            <li class="item button"><a href="#">Log In</a></li>
-            <aui:button type="submit" value="Ask Ques" class="item button" onClick="<%=quespage.toString()%>"></aui:button>
-            <aui:button type="submit" value="Log In" class="item button" onClick="<%=loginpage.toString()%>"></aui:button>
-            <aui:button type="submit" value="Sugn Up" class="item button" onClick="<%=createuserpage.toString()%>"></aui:button>
-            <li class="item button secondary"><a href="#">Sign Up</a></li>
+			<%-- <li class="item button"><aui:button type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button></li> --%>
+            <li class="item button secondary"><aui:button type="submit" value="Log out" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     </nav>
+   <div class = "all-div">
+    <div class="container-sidebar">
+        <div class="sidebar">
+            <div class="sidebar-title">Awesome Sidebar</div>
+            <div class="sidebar-section your-contribution">
+                <a href="#">
+                    <div class="sidebar-icon"><i class="fas fa-pencil-alt"></i></div>
+                    <div class="sidebar-content">
+                        <h2>Your Contribution</h2>
+                        <p>Share your ideas and make an impact.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-section public">
+                <a href="#">
+                    <div class="sidebar-icon"><i class="fas fa-globe-americas"></i></div>
+                     <div class="sidebar-content">
+                        <h2>Public</h2>
+                        <p>Explore public content from our community.</p>
+                    </div>
+                </a>
+            </div>	
+        </div>
+
+       
+    </div>
     
-     <div class="container">
+    
+    <% String usern = PanasonicWebPortlet.getuser(); %>
+    <div class = "content">
+   <div class="welcome-card">
+    <div class="user-name">Welcome, <%=usern %>!</div>
+    <div class="message">Get ready to dive into a world of knowledge, collaboration, and problem-solving. Our Lioferay Overflow is your gateway to an expansive community of experts and learners.</div>
+    <aui:button  type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button>
+</div>
+     
+     	
+     	
+     <div class="container-landing">
+     
+     <div class="card" style="width: 18rem;">
+   		
+</div>
         <h1>Questions and Answers</h1>
         <div class="questions">
     <% List<question>  queries = PanasonicWebPortlet.getallqueries();
@@ -343,10 +504,11 @@ body {
         List<answer> ans = PanasonicWebPortlet.getansbyqid(id);
         System.out.println(ans);
     %>
+
            <aui:form method="post" action="${queryActionURL}"> 
             <div class="question-card">
              <div class="user-info">
-                    <span>asked by <%=username%> <%=id %></span> 
+                    <span class="ask-by">asked by: <h5 class="user-name1"> <%=username%></h5></span> 
                 </div>
                 <div class="question">
                
@@ -366,7 +528,9 @@ body {
                 		%>
                 		<div class="answer">
                         <p><%=ans1.getAnsDesc() %></p>
+                        <div class="post-by">Posted by:<h5 class="user-name1"><%=ans1.getUserName() %></h5></div>
                     </div>
+                    
                     <% 
                 	}
                 }
@@ -379,9 +543,12 @@ body {
             </aui:form>
             <!-- Add more question cards here as needed -->
             
+        
      
     <% } %>
        </div>
+    </div>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
 </body>

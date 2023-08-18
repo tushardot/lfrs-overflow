@@ -60,6 +60,8 @@ public class PanasonicWebPortlet extends MVCPortlet {
 		String useremail = ParamUtil.getString(actionRequest,"email");
 		String name = ParamUtil.getString(actionRequest,"name");
 		String password = ParamUtil.getString(actionRequest,"pass");
+		String repassword = ParamUtil.getString(actionRequest,"re-pass");
+		if(password.equals(repassword)) {
 		newuser.setName(name);
 		newuser.setEmail(useremail);
 		newuser.setPassword(password);
@@ -183,13 +185,18 @@ public class PanasonicWebPortlet extends MVCPortlet {
 			System.out.println(toAddress);
 			
 			System.out.println("mail sended for testing to " + useremail);
-			
+			actionResponse.setRenderParameter("mvcPath", "/META-INF/resources/login.jsp");
 			
          }catch(Exception e) {
 			e.printStackTrace();
 		}
 
 			}
+	  
+		else {
+			System.out.println("Password didn't match");
+		}
+	}
 	
 	//log-in user method
 	@SuppressWarnings("deprecation")
@@ -285,7 +292,7 @@ public class PanasonicWebPortlet extends MVCPortlet {
 		catch(Exception e) {
 			System.out.println("User not found");
 			
-			
+			actionResponse.setRenderParameter("mvcPath", "/META-INF/resources/forgotpass.jsp");
 			
 		}
 	}
@@ -331,7 +338,8 @@ public class PanasonicWebPortlet extends MVCPortlet {
 		System.out.println("Username" + localuser);
 		int countques = questionLocalServiceUtil.getquestionsCount();
 		System.out.println("count" + countques);
-		 question newques = questionLocalServiceUtil.createquestion(countques + 1);
+		long idkey= System.currentTimeMillis();
+		 question newques = questionLocalServiceUtil.createquestion(idkey);
 		 
 		 newques.setQuesTitle(questitle);
 		 newques.setQuesDesc(quesdesc);
@@ -353,6 +361,7 @@ public class PanasonicWebPortlet extends MVCPortlet {
 	public  void queryinfo(ActionRequest actionRequest, ActionResponse actionResponse){
         quesId = Long.valueOf(ParamUtil.getString(actionRequest,"questionid"));
 		System.out.println(ParamUtil.getString(actionRequest,"questionid"));
+		System.out.println("quesId-----------------------------------");
 		System.out.println(quesId);
 		actionResponse.setRenderParameter("mvcPath", "/META-INF/resources/query.jsp");
 	}
@@ -363,12 +372,14 @@ public class PanasonicWebPortlet extends MVCPortlet {
 	public void addanswerinfo(ActionRequest actionRequest, ActionResponse actionResponse) {
 		quesId = Long.valueOf(ParamUtil.getString(actionRequest,"questionid"));
 		String ansdesc = ParamUtil.getString(actionRequest,"answer");
-		int anscount = answerLocalServiceUtil.getanswersCount();
-		answer newans = answerLocalServiceUtil.createanswer(anscount + 1);
+//		int anscount = answerLocalServiceUtil.getanswersCount();
+		long idkey= System.currentTimeMillis();
+		answer newans = answerLocalServiceUtil.createanswer(idkey);
 		newans.setUserName(localuser);
 		newans.setAnsDesc(ansdesc);
 		newans.setQuesId(quesId);
 		answerLocalServiceUtil.addanswer(newans);
+		System.out.println(ansdesc);
 		System.out.println("Answer add successfully");
 		actionResponse.setRenderParameter("mvcPath", "/META-INF/resources/landing.jsp");
 	}
@@ -379,7 +390,7 @@ public class PanasonicWebPortlet extends MVCPortlet {
 		return quesId;
 		
 	}
-	//get answer by questionId
+	//get answer by questionId	
 	public static List<answer> getansbyqid(long id){
 		return answerLocalServiceUtil.getansbyquesid(id);
 	}

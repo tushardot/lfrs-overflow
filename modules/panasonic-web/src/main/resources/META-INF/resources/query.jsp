@@ -235,7 +235,7 @@
   	
   	 
 
-        .container {
+        .container-query {
             background-color: #fff;
             border-radius: 8px;
             box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -287,7 +287,7 @@
     
 </head>
 <body>
-    <nav class="nav">
+       <nav class="nav">
         <ul class="menu">
 			<li><img src="https://media.trustradius.com/product-logos/k2/oa/612TV5WCJ19M.PNG" width="50px"></li>
             <li class="logo"><a href="#"><b>LiferayOverflow</b></a></li>
@@ -295,17 +295,14 @@
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
 			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
-            <li class="item button"><a href="#">Log In</a></li>
-            <aui:button type="submit" value="Ask Ques" class="item button" onClick="<%=quespage.toString()%>"></aui:button>
-            <aui:button type="submit" value="Log In" class="item button" onClick="<%=loginpage.toString()%>"></aui:button>
-            <aui:button type="submit" value="Sugn Up" class="item button" onClick="<%=createuserpage.toString()%>"></aui:button>
-            <li class="item button secondary"><a href="#">Sign Up</a></li>
+			<%-- <li class="item button"><aui:button type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button></li> --%>
+            <li class="item button secondary"><aui:button type="submit" value="Log out" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     </nav>
     
     
-    <div class="container">
+    <div class="container-query">
     <h1>Answer the Question</h1>
      <% 
      long quesId = PanasonicWebPortlet.getquesId();
