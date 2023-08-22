@@ -2,7 +2,9 @@
 <portlet:renderURL var="loginpage">
 <portlet:param name="mvcPath" value="/login.jsp"/>
 </portlet:renderURL>
-
+<portlet:renderURL var="indexpage">
+<portlet:param name="mvcPath" value="/mail.jsp"/>
+</portlet:renderURL>
 <portlet:renderURL var="createuserpage">
 <portlet:param name="mvcPath" value="/createuser.jsp"/>
 </portlet:renderURL>
@@ -321,7 +323,7 @@
              <div class="indicator"></div>
         </div>
     </div>
-    
+    <%-- <aui:button type="submit" value="mail" onClick="<%=indexpage.toString()%>"></aui:button> --%>
     <script>
         let slideIndex = 0;
         showSlides(slideIndex);

@@ -11,7 +11,7 @@
    String host = "localhost";
    Properties properties = System.getProperties();
    properties.setProperty("mail.user", "rahulkumarroy723@gmail.com");
-   properties.setProperty("mail.password", "pass");
+   properties.setProperty("mail.password", "hfdnjqaqtpjbfrld");
    properties.setProperty("mail.smtp.host", host);
    properties.put("mail.smtp.socketFactor.port", "465");
    properties.put("mail.smtp.socketFactory.class",
@@ -22,7 +22,7 @@
 		   new Authenticator() {
        protected PasswordAuthentication  getPasswordAuthentication() {
        return new PasswordAuthentication(
-    		   "rahulkumarroy723@gmail.com", "R@#ul987");
+    		   "rahulkumarroy723@gmail.com", "hfdnjqaqtpjbfrld");
                }
    });
    try{
@@ -39,6 +39,7 @@
    }
 %>
 <html>
+<h> mail sended</h>
 <body>
 <center>
 </center>

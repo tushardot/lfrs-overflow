@@ -424,7 +424,44 @@ body {
   	  margin : 0px auto;
   	  }
   	  
+  	  
+  	   #searchBar {
+            display: none;
+        }
 
+        /* Style for the search bar */
+        #searchInput {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    #searchResultsContainer {
+            display: none;
+            position: fixed;
+            top: 100px;
+            right: 400px;
+            width: 300px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        /* Style for the search results */
+        #searchResults {
+            padding: 10px;
+        }
+         .resultItem {
+            cursor: pointer;
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .resultItem:hover {
+            background-color: #f2f2f2;
+        }
     </style>
     
     <script
@@ -441,7 +478,13 @@ body {
             <li class="item"><img src=""><a href="<portlet:renderURL><portlet:param name="mvcPath" value="/landing.jsp"/></portlet:renderURL>">Home</a></li>
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
-			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
+            <div id="searchBar">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button type="submit" value="Search"  onClick="performSearch()">Search</button>
+         </div>
+			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"  onclick="toggleSearchBar()" ></i></li>
+			
+   
 			<%-- <li class="item button"><aui:button type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button></li> --%>
             <li class="item button secondary"><aui:button type="submit" value="Log out" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li>
             <li class="toggle"><span class="bars"></span></li>
@@ -543,12 +586,17 @@ body {
             </aui:form>
             <!-- Add more question cards here as needed -->
             
-        
+   
      
     <% } %>
        </div>
     </div>
     </div>
+    </div>
+     <div id="searchResultsContainer">
+        <div id="searchResults">
+            <!-- Search results will be displayed here -->
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
 </body>
@@ -574,4 +622,78 @@ body {
     
     console.log("queries"); 
     console.log(<%=queries%>)
+    
+    const data =  <%=queries%>;
+    console.log(typeof data);
+    const new1 = [];
+    console.log(typeof new1);
+     function toggleSearchBar() {
+            const searchBar = document.getElementById('searchBar');
+            searchBar.style.display = (searchBar.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function performSearch() {
+            // Implement search functionality here
+            const searchInput = document.getElementById('searchInput').value;
+            const results = [];
+            for (const item of data) {
+            	
+                 if (item.quesDesc.toLowerCase().includes(searchInput)) {
+                    results.push(item);
+                    console.log(item.quesDesc);
+                } 
+            }
+            
+            
+          
+             displayResults(results);  
+          
+        }
+        
+        function displayResults(results){
+        	console.log("function called");
+        	console.log(results.length);
+        	const resultsContainer = document.getElementById('searchResults');
+        	  resultsContainer.innerHTML = ''; 
+            if (results.length === 0) {
+                resultsContainer.innerHTML = "No results found.";
+                console.log("No results found")
+            }
+            else {
+            	
+            	for (const result of results){
+            		console.log(" results found")
+            		const resultItem = document.createElement('div');
+            		resultItem.classList.add('resultItem');
+            	 resultItem.textContent = result.quesDesc;
+            	 console.log(resultItem);
+            	 resultItem.addEventListener('click', () => {
+                     alert(`You clicked on result ${resultItem}`);
+                 });
+                 resultsContainer.appendChild(resultItem);
+                 console.log(resultsContainer);
+            	}
+            }
+        }
+        /* function displayResults(results) {
+            const resultsContainer = document.getElementById("searchResults");
+            resultsContainer.innerHTML = ""; // Clear previous results
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = "No results found.";
+                console.log("No results found")
+            } else {
+                const ul = document.createElement("ul");
+                for (const result of results) {
+                    const li = document.createElement("li");
+                    li.textContent = result.quesDesc;
+                    console.log("this is result");
+                    console.log(result.quesDesc);
+                    ul.appendChild(li);
+                }
+                resultsContainer.appendChild(ul);
+            }
+        } */
+        document.getElementById("searchInput").addEventListener("input", performSearch);
+        searchResultsContainer.style.display = 'block';
     </script>
