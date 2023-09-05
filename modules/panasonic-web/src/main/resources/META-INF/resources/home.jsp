@@ -323,7 +323,7 @@
              <div class="indicator"></div>
         </div>
     </div>
-    <%-- <aui:button type="submit" value="mail" onClick="<%=indexpage.toString()%>"></aui:button> --%>
+  <%--    <aui:button type="submit" value="mail" onClick="<%=indexpage.toString()%>"></aui:button>  --%>
     <script>
         let slideIndex = 0;
         showSlides(slideIndex);

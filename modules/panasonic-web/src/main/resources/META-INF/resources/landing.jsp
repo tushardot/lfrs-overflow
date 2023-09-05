@@ -663,13 +663,21 @@ body {
             	
             	for (const result of results){
             		console.log(" results found")
+            		
+            		 var quesid = result.quesId;
+            		 console.log(quesid);
             		const resultItem = document.createElement('div');
             		resultItem.classList.add('resultItem');
             	 resultItem.textContent = result.quesDesc;
             	 console.log(resultItem);
-            	 resultItem.addEventListener('click', () => {
-                     alert(`You clicked on result ${resultItem}`);
-                 });
+            	 console.log(result);
+            	/*  resultItem.addEventListener('click', "<portlet:renderURL  var="answerURL">
+                         <portlet:param name="questionId" value="/query.jsp?quesId=quesid" />
+                             </portlet:renderURL>");
+                 }); */
+            	 <% //PanasonicWebPortlet.newId(quesid);
+            	// long quesid = Long.parseLong(request.getAttribute("quesid").toString());
+            	 //System.out.println(quesid);%>
                  resultsContainer.appendChild(resultItem);
                  console.log(resultsContainer);
             	}
