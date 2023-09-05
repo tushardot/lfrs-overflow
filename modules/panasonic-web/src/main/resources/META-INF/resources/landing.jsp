@@ -24,6 +24,11 @@
 </portlet:renderURL>
 
 
+<portlet:renderURL var="myProfileJsp">
+<portlet:param name="mvcPath" value="/my_profile.jsp"/>
+</portlet:renderURL>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -495,7 +500,7 @@ body {
         <div class="sidebar">
             <div class="sidebar-title">Awesome Sidebar</div>
             <div class="sidebar-section your-contribution">
-                <a href="#">
+                <a href="<%=myProfileJsp.toString()%>">
                     <div class="sidebar-icon"><i class="fas fa-pencil-alt"></i></div>
                     <div class="sidebar-content">
                         <h2>Your Contribution</h2>
