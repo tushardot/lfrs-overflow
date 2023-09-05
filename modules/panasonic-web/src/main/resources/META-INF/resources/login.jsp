@@ -265,12 +265,11 @@
 				<div class="signin-content">
 					<div class="signin-image">
 						<figure>
-							<img src="https://www.google.com/url?sa=i&url=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fuser_149071&psig=AOvVaw1xmffJ8KwTwhe9ROXM9PMe&ust=1691132500627000&source=images&cd=vfe&opi=89978449&ved=0CBEQjRxqFwoTCJCYqtH1v4ADFQAAAAAdAAAAABAE" alt="sing up image">
+							<img src="https://st.depositphotos.com/18722762/51522/v/600/depositphotos_515228796-stock-illustration-online-registration-sign-login-account.jpg" alt="sing up image">
 						</figure>
-						
+						<p class="signup-image-link">New User!</p>
 						<a href="<%=renderJSPVariable.toString()%>" class="signup-image-link">
-						<p>New User!</p>Create an
-							account</a>
+						Create an account</a>
 					</div>
 
 					<div class="signin-form">

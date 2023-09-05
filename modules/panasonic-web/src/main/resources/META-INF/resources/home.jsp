@@ -2,7 +2,9 @@
 <portlet:renderURL var="loginpage">
 <portlet:param name="mvcPath" value="/login.jsp"/>
 </portlet:renderURL>
-
+<portlet:renderURL var="indexpage">
+<portlet:param name="mvcPath" value="/mail.jsp"/>
+</portlet:renderURL>
 <portlet:renderURL var="createuserpage">
 <portlet:param name="mvcPath" value="/createuser.jsp"/>
 </portlet:renderURL>
@@ -219,6 +221,59 @@
         	padding-right: 0;
     	}
   	}
+  	
+  	/* slider */
+  	
+  	 .slider-card {
+        margin: 200px auto;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+            max-width: 50%;
+            position: relative;
+        }
+
+        .slider-container {
+            position: relative;
+            width: 100%;
+            padding-top: 56.25%; /* 16:9 aspect ratio (9 / 16 * 100) */
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+        }
+
+        .slider-indicators {
+            position: absolute;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .indicator {
+            width: 12px;
+            height: 12px;
+            background-color: #bbb;
+            border-radius: 50%;
+            margin: 0 6px;
+            cursor: pointer;
+        }
+
+        .active {
+            background-color: #333;
+        }
     </style>
     
     <script
@@ -252,5 +307,39 @@
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     </nav>
+    
+    <div class="slider-card">
+        <div class="slider-container">
+            <div class="slide" style="background-image: url('https://img.freepik.com/free-vector/tiny-people-carrying-key-open-padlock_74855-16292.jpg?w=1800&t=st=1691663405~exp=1691664005~hmac=d159023f3eeaa32900cd4c0255dc55b3eba0362976c089492f51f33486e5aa89');"></div>
+            <div class="slide" style="background-image: url('https://img.freepik.com/free-vector/data-protection-law-illustration-concept_114360-971.jpg?w=1480&t=st=1691664799~exp=1691665399~hmac=f8af147ab8cb198cc57c7c6dd6677d72bf2d2dab398eee4eeab85289875ffcbc');"></div>
+            <div class="slide" style="background-image: url('https://img.freepik.com/free-vector/computer-login-concept-illustration_114360-7862.jpg?w=1480&t=st=1691664315~exp=1691664915~hmac=22594fc20d31e1007de04fcec3759e7e4f9c6404442dcf8157bd1bb1a450fe7b');"></div>
+        
+         <div class="slide" style="background-image: url('https://img.freepik.com/free-vector/reviews-concept-landing-page_52683-11367.jpg?w=1480&t=st=1691664383~exp=1691664983~hmac=84ecf28f6ca733f468487fa8f78aeb41ccaf1eba62e229110907bf1d5f19cfe3');"></div>
+        </div>
+        <div class="slider-indicators">
+            <div class="indicator"></div>
+            <div class="indicator"></div>
+            <div class="indicator"></div>
+             <div class="indicator"></div>
+        </div>
+    </div>
+  <%--    <aui:button type="submit" value="mail" onClick="<%=indexpage.toString()%>"></aui:button>  --%>
+    <script>
+        let slideIndex = 0;
+        showSlides(slideIndex);
+
+        function showSlides(index) {
+            let slides = document.getElementsByClassName("slide");
+            let indicators = document.getElementsByClassName("indicator");
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+                indicators[i].classList.remove("active");
+            }
+            slides[index].style.display = "block";
+            indicators[index].classList.add("active");
+            slideIndex = index;
+            setTimeout(() => showSlides((slideIndex + 1) % slides.length), 2000); // Change slide every 2 seconds
+        }
+    </script>
 </body>
 </html>

@@ -24,6 +24,11 @@
 </portlet:renderURL>
 
 
+<portlet:renderURL var="myProfileJsp">
+<portlet:param name="mvcPath" value="/my_profile.jsp"/>
+</portlet:renderURL>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -49,6 +54,7 @@
   		}
   				
   		.nav ul{
+  			position: fixed;
   			background: #1c395e;
    			padding: 0px 20px;
    			width: 100%;
@@ -349,41 +355,16 @@ body {
             color: #34495e; /* Slightly lighter blue color */
             margin-bottom: 20px;
         }
-        .ask-button {
-            display: inline-block;
-            padding: 12px 24px;
-            background-color: #e74c3c; /* Red color */
-            color: #fff;
-            border: none;
-            border-radius: 5px;
-            text-align: center;
-            cursor: pointer;
-            font-size: 16px;
-            transition: background-color 0.3s;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-        .ask-button:hover {
-            background-color: #c0392b; /* Darker red on hover */
-        }
         
         .user-name1{
             color: #2c3e50;
         }
         
-        
-        /* side bar */
-/*           body {
-            margin: 0;
-            padding: 0;
-            font-family: Arial, sans-serif;
-            background-color: #f4f4f4;
-        }  */
 
         .container-sidebar {
             margin-top: 100px;
-            display: flex;
-            flex-wrap: wrap;
+            float: left;
+            position: fixed;
         }
 
         .sidebar {
@@ -392,12 +373,9 @@ body {
             color: #fff;
             padding: 20px;
             box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
-            transition: transform 0.3s ease-in-out;
         }
 
-        .sidebar:hover {
-            transform: translateX(0);
-        }
+        
 
         .sidebar-title {
             font-size: 2rem;
@@ -412,9 +390,7 @@ body {
         .sidebar-section a {
             text-decoration: none;
             color: inherit;
-            display: flex;
             align-items: center;
-            transition: color 0.3s ease;
         }
 
         .sidebar-section a:hover {
@@ -424,12 +400,9 @@ body {
         .sidebar-icon {
             font-size: 2rem;
             margin-right: 10px;
-            flex-shrink: 0;
         }
 
-        .sidebar-content {
-            flex-grow: 1;
-        }
+  
 
         h2 {
             font-size: 1.8rem;
@@ -442,9 +415,8 @@ body {
         }
 
         .content {
-        display: "flex";
-            
-            padding: 30px;
+      float: left;
+      margin-left: 460px;
         }
 
         /* Icons */
@@ -452,17 +424,49 @@ body {
             color: #ff6f61;
         }
 
-        /* Responsive adjustments */
-        @media screen and (max-width: 768px) {
-            .container {
-                flex-direction: column;
-            }
-
-            .sidebar {
-                width: 100%;
-            }
+  	  .all-div{
+  	  max-width : 80%;
+  	  margin : 0px auto;
+  	  }
+  	  
+  	  
+  	   #searchBar {
+            display: none;
         }
-  	
+
+        /* Style for the search bar */
+        #searchInput {
+            padding: 5px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+    #searchResultsContainer {
+            display: none;
+            position: fixed;
+            top: 100px;
+            right: 400px;
+            width: 300px;
+            background-color: #fff;
+            border: 1px solid #ccc;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            border-radius: 4px;
+            overflow-y: auto;
+            max-height: 300px;
+        }
+
+        /* Style for the search results */
+        #searchResults {
+            padding: 10px;
+        }
+         .resultItem {
+            cursor: pointer;
+            padding: 8px;
+            border-bottom: 1px solid #ccc;
+        }
+
+        .resultItem:hover {
+            background-color: #f2f2f2;
+        }
     </style>
     
     <script
@@ -479,18 +483,24 @@ body {
             <li class="item"><img src=""><a href="<portlet:renderURL><portlet:param name="mvcPath" value="/landing.jsp"/></portlet:renderURL>">Home</a></li>
             <li class="item"><a href="#">About</a></li>
             <li class="item"><a href="#">Services</a></li>
-			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"></i></li>
+            <div id="searchBar">
+        <input type="text" id="searchInput" placeholder="Search...">
+        <button type="submit" value="Search"  onClick="performSearch()">Search</button>
+         </div>
+			<li class=""><i class="fa-solid fa-magnifying-glass" style="color: #ffffff;"  onclick="toggleSearchBar()" ></i></li>
+			
+   
 			<%-- <li class="item button"><aui:button type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button></li> --%>
             <li class="item button secondary"><aui:button type="submit" value="Log out" class="item button" onClick="<%=loginpage.toString()%>"></aui:button></li>
             <li class="toggle"><span class="bars"></span></li>
         </ul>
     </nav>
-    
+   <div class = "all-div">
     <div class="container-sidebar">
         <div class="sidebar">
             <div class="sidebar-title">Awesome Sidebar</div>
             <div class="sidebar-section your-contribution">
-                <a href="#">
+                <a href="<%=myProfileJsp.toString()%>">
                     <div class="sidebar-icon"><i class="fas fa-pencil-alt"></i></div>
                     <div class="sidebar-content">
                         <h2>Your Contribution</h2>
@@ -518,7 +528,7 @@ body {
    <div class="welcome-card">
     <div class="user-name">Welcome, <%=usern %>!</div>
     <div class="message">Get ready to dive into a world of knowledge, collaboration, and problem-solving. Our Lioferay Overflow is your gateway to an expansive community of experts and learners.</div>
-    <li class="ask-button"><aui:button  class="ask-button" type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button></li>
+    <aui:button  type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button>
 </div>
      
      	
@@ -581,11 +591,17 @@ body {
             </aui:form>
             <!-- Add more question cards here as needed -->
             
-        
+   
      
     <% } %>
        </div>
     </div>
+    </div>
+    </div>
+     <div id="searchResultsContainer">
+        <div id="searchResults">
+            <!-- Search results will be displayed here -->
+        </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
 </body>
@@ -611,4 +627,86 @@ body {
     
     console.log("queries"); 
     console.log(<%=queries%>)
+    
+    const data =  <%=queries%>;
+    console.log(typeof data);
+    const new1 = [];
+    console.log(typeof new1);
+     function toggleSearchBar() {
+            const searchBar = document.getElementById('searchBar');
+            searchBar.style.display = (searchBar.style.display === 'block') ? 'none' : 'block';
+        }
+
+        function performSearch() {
+            // Implement search functionality here
+            const searchInput = document.getElementById('searchInput').value;
+            const results = [];
+            for (const item of data) {
+            	
+                 if (item.quesDesc.toLowerCase().includes(searchInput)) {
+                    results.push(item);
+                    console.log(item.quesDesc);
+                } 
+            }
+            
+            
+          
+             displayResults(results);  
+          
+        }
+        
+        function displayResults(results){
+        	console.log("function called");
+        	console.log(results.length);
+        	const resultsContainer = document.getElementById('searchResults');
+        	  resultsContainer.innerHTML = ''; 
+            if (results.length === 0) {
+                resultsContainer.innerHTML = "No results found.";
+                console.log("No results found")
+            }
+            else {
+            	
+            	for (const result of results){
+            		console.log(" results found")
+            		
+            		 var quesid = result.quesId;
+            		 console.log(quesid);
+            		const resultItem = document.createElement('div');
+            		resultItem.classList.add('resultItem');
+            	 resultItem.textContent = result.quesDesc;
+            	 console.log(resultItem);
+            	 console.log(result);
+            	/*  resultItem.addEventListener('click', "<portlet:renderURL  var="answerURL">
+                         <portlet:param name="questionId" value="/query.jsp?quesId=quesid" />
+                             </portlet:renderURL>");
+                 }); */
+            	 <% //PanasonicWebPortlet.newId(quesid);
+            	// long quesid = Long.parseLong(request.getAttribute("quesid").toString());
+            	 //System.out.println(quesid);%>
+                 resultsContainer.appendChild(resultItem);
+                 console.log(resultsContainer);
+            	}
+            }
+        }
+        /* function displayResults(results) {
+            const resultsContainer = document.getElementById("searchResults");
+            resultsContainer.innerHTML = ""; // Clear previous results
+
+            if (results.length === 0) {
+                resultsContainer.innerHTML = "No results found.";
+                console.log("No results found")
+            } else {
+                const ul = document.createElement("ul");
+                for (const result of results) {
+                    const li = document.createElement("li");
+                    li.textContent = result.quesDesc;
+                    console.log("this is result");
+                    console.log(result.quesDesc);
+                    ul.appendChild(li);
+                }
+                resultsContainer.appendChild(ul);
+            }
+        } */
+        document.getElementById("searchInput").addEventListener("input", performSearch);
+        searchResultsContainer.style.display = 'block';
     </script>
