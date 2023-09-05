@@ -30,6 +30,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>liferay overflow</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> 
     <style>
     	*{
@@ -235,7 +236,7 @@
   	}
   	
   	/* questions */
-  	
+  		margin-left: 10px;
   	* {
     margin: 0;
     padding: 0;
@@ -314,6 +315,15 @@ body {
             border-radius: 3px;
         }
         
+        .ask-by {
+    		width: 150px;
+    		
+    	
+            background-color: #e0e0e0;
+            padding: 2px 5px;
+            font-size: 12px;
+            border-radius: 3px;
+        }
         /*welcome card  */
     
     
@@ -360,6 +370,98 @@ body {
         .user-name1{
             color: #2c3e50;
         }
+        
+        
+        /* side bar */
+/*           body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+        }  */
+
+        .container-sidebar {
+            margin-top: 100px;
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .sidebar {
+            width: 300px;
+            background-color: #333;
+            color: #fff;
+            padding: 20px;
+            box-shadow: 2px 0 10px rgba(0, 0, 0, 0.2);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .sidebar:hover {
+            transform: translateX(0);
+        }
+
+        .sidebar-title {
+            font-size: 2rem;
+            margin-bottom: 20px;
+            color: #ff6f61;
+        }
+
+        .sidebar-section {
+            margin-bottom: 30px;
+        }
+
+        .sidebar-section a {
+            text-decoration: none;
+            color: inherit;
+            display: flex;
+            align-items: center;
+            transition: color 0.3s ease;
+        }
+
+        .sidebar-section a:hover {
+            color: #ff6f61;
+        }
+
+        .sidebar-icon {
+            font-size: 2rem;
+            margin-right: 10px;
+            flex-shrink: 0;
+        }
+
+        .sidebar-content {
+            flex-grow: 1;
+        }
+
+        h2 {
+            font-size: 1.8rem;
+            margin-bottom: 5px;
+        }
+
+        p {
+            font-size: 1.1rem;
+            line-height: 1.6;
+        }
+
+        .content {
+        display: "flex";
+            
+            padding: 30px;
+        }
+
+        /* Icons */
+        .fa-globe-americas {
+            color: #ff6f61;
+        }
+
+        /* Responsive adjustments */
+        @media screen and (max-width: 768px) {
+            .container {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+            }
+        }
   	
     </style>
     
@@ -384,7 +486,35 @@ body {
         </ul>
     </nav>
     
+    <div class="container-sidebar">
+        <div class="sidebar">
+            <div class="sidebar-title">Awesome Sidebar</div>
+            <div class="sidebar-section your-contribution">
+                <a href="#">
+                    <div class="sidebar-icon"><i class="fas fa-pencil-alt"></i></div>
+                    <div class="sidebar-content">
+                        <h2>Your Contribution</h2>
+                        <p>Share your ideas and make an impact.</p>
+                    </div>
+                </a>
+            </div>
+            <div class="sidebar-section public">
+                <a href="#">
+                    <div class="sidebar-icon"><i class="fas fa-globe-americas"></i></div>
+                     <div class="sidebar-content">
+                        <h2>Public</h2>
+                        <p>Explore public content from our community.</p>
+                    </div>
+                </a>
+            </div>	
+        </div>
+
+       
+    </div>
+    
+    
     <% String usern = PanasonicWebPortlet.getuser(); %>
+    <div class = "content">
    <div class="welcome-card">
     <div class="user-name">Welcome, <%=usern %>!</div>
     <div class="message">Get ready to dive into a world of knowledge, collaboration, and problem-solving. Our Lioferay Overflow is your gateway to an expansive community of experts and learners.</div>
@@ -416,7 +546,7 @@ body {
            <aui:form method="post" action="${queryActionURL}"> 
             <div class="question-card">
              <div class="user-info">
-                    <span>asked by <h5 class="user-name1"> <%=username%></h5></span> 
+                    <span class="ask-by">asked by: <h5 class="user-name1"> <%=username%></h5></span> 
                 </div>
                 <div class="question">
                
@@ -455,6 +585,7 @@ body {
      
     <% } %>
        </div>
+    </div>
     </div>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"> </script>
 </body>
