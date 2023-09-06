@@ -1,4 +1,0 @@
-Bundle-Name: scheduler
-Bundle-SymbolicName: scheduler
-Bundle-Version: 1.0.0
-Export-Package: scheduler.constants
