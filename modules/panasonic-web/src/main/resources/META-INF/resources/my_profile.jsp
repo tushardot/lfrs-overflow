@@ -7,6 +7,10 @@
 <portlet:renderURL var="quespage">
 <portlet:param name="mvcPath" value="/addques.jsp"/>
 </portlet:renderURL>
+<portlet:renderURL var="previousPageURL">
+<portlet:param name="mvcPath" value="/landing.jsp"/>
+</portlet:renderURL>
+
 <style>
 	*{
     		box-sizing: border-box;
@@ -164,6 +168,14 @@
     <div class="message">Get ready to dive into a world of knowledge, collaboration, and problem-solving. Our Lioferay Overflow is your gateway to an expansive community of experts and learners.</div>
     <aui:button  type="submit" value="Ask Question" onClick="<%=quespage.toString()%>"></aui:button>
 </div>
+
+
+<aui:button-row>
+    <aui:button type="submit" value="Questions"></aui:button>
+    <aui:button type="submit" value="Answers"></aui:button>
+    <aui:button type="cancel" onClick= "<%= previousPageURL.toString() %>"  value="Back to Previous Page"></aui:button>
+</aui:button-row>
+
 
 
 
