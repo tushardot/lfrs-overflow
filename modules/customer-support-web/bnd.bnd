@@ -1,4 +1,0 @@
-Bundle-Name: customer-support-web
-Bundle-SymbolicName: customer.support.web
-Bundle-Version: 1.0.0
-Export-Package: customer.support.web.constants
