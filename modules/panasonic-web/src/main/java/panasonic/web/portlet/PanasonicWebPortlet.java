@@ -384,7 +384,9 @@ public class PanasonicWebPortlet extends MVCPortlet {
 		actionResponse.setRenderParameter("mvcPath", "/META-INF/resources/landing.jsp");
 	}
 	
-	
+	public static void newId(long Id) {
+		quesId = Id;
+	}
 	 //get Quesion Id 
 	public static long getquesId() {
 		return quesId;

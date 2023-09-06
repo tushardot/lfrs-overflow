@@ -1,3 +1,7 @@
+<%@ include file="/init.jsp" %>
+
+
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -65,6 +69,7 @@
     <div class="footer">
         <p>&copy; <span id="currentYear"></span> All rights reserved.</p>
     </div>
+
 
     <script>
         let slideIndex = 0;

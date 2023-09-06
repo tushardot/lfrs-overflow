@@ -1,5 +1,0 @@
-Bundle-Name: sendmail-test
-Bundle-SymbolicName: com.liferay.mail.test
-Bundle-Version: 1.0.0
--includeresource: com.liferay.mail.client.jar=../sendmail-client/build/libs/com.liferay.mail.client-1.0.0.jar;lib:=true
--provider-policy: ${replacestring;${range;[==,==]};.*,(.*)];$1}
