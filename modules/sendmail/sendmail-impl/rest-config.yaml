@@ -1,9 +1,0 @@
-apiDir: "../sendmail-api/src/main/java"
-apiPackagePath: "com.liferay.mail"
-application:
-    baseURI: "/sendmail"
-    className: "SendmailApplication"
-    name: "Sendmail"
-author: "me"
-clientDir: "../sendmail-client/src/main/java"
-testDir: "../sendmail-test/src/testIntegration/java"
